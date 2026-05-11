@@ -10,24 +10,37 @@ module.exports = async (req, res) => {
     return res.status(405).json({ error: 'Méthode non autorisée' });
   }
 
-  // Nettoyage et extraction des données
-  const name = validator.escape(req.body.name || '');
-  const email = validator.normalizeEmail(req.body.email || '');
-  const message = validator.escape(req.body.message || '');
-  const botField = req.body['bot-field'];
+  // 1. Validation de type stricte (Sécurité Anti-Injection)
+  const { name: rawName, email: rawEmail, message: rawMessage, 'bot-field': botField } = req.body;
 
-  // 1. Protection Honeypot
+  if (
+    typeof rawName !== 'string' || 
+    typeof rawEmail !== 'string' || 
+    typeof rawMessage !== 'string'
+  ) {
+    console.error('Validation échouée: Types invalides');
+    return res.status(400).json({ error: 'Format de données invalide' });
+  }
+
+  // 2. Protection Honeypot
   if (botField) {
     console.log('Spam détecté via honeypot');
     return res.status(200).json({ success: true, message: 'Message traité' });
   }
 
-  // 2. Validation stricte
-  if (validator.isEmpty(name) || validator.isEmpty(email) || validator.isEmpty(message)) {
+  // 3. Nettoyage et Validation
+  const name = validator.escape(rawName.trim());
+  const message = validator.escape(rawMessage.trim());
+  
+  // normalizeEmail peut renvoyer false, on doit d'abord vérifier s'il est vide
+  if (validator.isEmpty(name) || validator.isEmpty(rawEmail.trim()) || validator.isEmpty(message)) {
+    console.error('Validation échouée: Champs vides');
     return res.status(400).json({ error: 'Tous les champs sont obligatoires' });
   }
 
-  if (!validator.isEmail(email)) {
+  const email = validator.normalizeEmail(rawEmail);
+  if (!email || !validator.isEmail(email)) {
+    console.error('Validation échouée: Email invalide');
     return res.status(400).json({ error: 'Email invalide' });
   }
 

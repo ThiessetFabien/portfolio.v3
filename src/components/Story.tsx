@@ -4,11 +4,11 @@ export default function Story({ data }: { data: any }) {
   if (!data) return null;
   
   return (
-    <section id="about" className="bg-[#0a0f1d] overflow-hidden border-t border-white/5">
+    <section id="about" role="region" aria-labelledby="story-title" className="bg-[#0a0f1d] overflow-hidden border-t border-white/5">
       <div className="section-padding">
         <div className="flex flex-col lg:flex-row lg:items-start justify-between mb-16 gap-10">
           <div className="max-w-xl">
-            <h2 className="heading-primary text-3xl md:text-4xl mb-6">
+            <h2 id="story-title" className="heading-primary text-3xl md:text-4xl mb-6">
               Ma <br /><span className="text-teal-400 text-4xl md:text-5xl">Vision</span>.
             </h2>
             <div className="h-1 w-16 bg-teal-800 mb-6" />
@@ -17,12 +17,12 @@ export default function Story({ data }: { data: any }) {
             </p>
           </div>
           <div className="lg:max-w-sm w-full bg-white/5 p-6 rounded-3xl border border-white/10">
-            <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-teal-500 mb-6">Mes Valeurs Clés</p>
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-teal-500 mb-6">Mes Valeurs Clés</p>
             <div className="flex flex-wrap gap-2">
               {data.values.map((v: any) => (
                 <div key={v.name} className="flex items-center space-x-2 px-3 py-1.5 bg-white/5 border border-white/5 rounded-full hover:border-teal-500/30 transition-all">
                   <span className="text-sm" aria-hidden="true">{v.icon}</span>
-                  <span className="text-[10px] font-bold text-slate-200 uppercase tracking-tight">{v.name}</span>
+                  <span className="text-xs font-bold text-slate-200 uppercase tracking-tight">{v.name}</span>
                 </div>
               ))}
             </div>

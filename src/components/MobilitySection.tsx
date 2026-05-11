@@ -4,12 +4,12 @@ export default function MobilitySection({ data }: { data: any }) {
   if (!data) return null;
 
   return (
-    <section className="bg-[#050813] border-t border-white/5 overflow-hidden">
+    <section id="mobility" role="region" aria-labelledby="mobility-title" className="bg-[#050813] border-t border-white/5 overflow-hidden">
       <div className="section-padding">
         <div className="grid md:grid-cols-2 gap-16 items-center">
           <div className="space-y-8 reveal">
             <div>
-              <h2 className="heading-primary text-4xl mb-6">
+              <h2 id="mobility-title" className="heading-primary text-4xl mb-6">
                 Ancrage Territorial & <span className="text-teal-400 italic serif">Mobilité</span>.
               </h2>
               <p className="text-slate-200 text-lg leading-relaxed mb-8">
@@ -67,29 +67,29 @@ export default function MobilitySection({ data }: { data: any }) {
 
               {/* Labels with improved visibility */}
               <div className="absolute top-[180px] left-[200px] -translate-x-1/2 -translate-y-full mb-4 z-20 flex flex-col items-center">
-                <span className="px-3 py-1 bg-teal-400 text-[#0a0f1d] font-black text-[10px] rounded-full shadow-2xl border border-white/20 whitespace-nowrap">
+                <span className="px-3 py-1 bg-teal-400 text-[#0a0f1d] font-black text-xs rounded-full shadow-2xl border border-white/20 whitespace-nowrap">
                   DOUAI (HUB CENTRAL)
                 </span>
               </div>
 
               <div className="absolute top-[85px] left-[200px] -translate-x-1/2 flex flex-col items-center">
-                <span className="text-[9px] font-bold text-slate-100 uppercase tracking-widest bg-[#131b2f] px-2 py-0.5 rounded border border-white/5">Lille</span>
+                <span className="text-xs font-bold text-slate-100 uppercase tracking-widest bg-[#131b2f] px-2 py-0.5 rounded border border-white/5">Lille</span>
               </div>
 
               <div className="absolute top-[290px] left-[100px] -translate-x-1/2 flex flex-col items-center">
-                <span className="text-[9px] font-bold text-slate-100 uppercase tracking-widest bg-[#131b2f] px-2 py-0.5 rounded border border-white/5">Arras</span>
+                <span className="text-xs font-bold text-slate-100 uppercase tracking-widest bg-[#131b2f] px-2 py-0.5 rounded border border-white/5">Arras</span>
               </div>
 
               <div className="absolute top-[290px] left-[300px] -translate-x-1/2 flex flex-col items-center">
-                <span className="text-[9px] font-bold text-slate-100 uppercase tracking-widest bg-[#131b2f] px-2 py-0.5 rounded border border-white/5">Valenciennes</span>
+                <span className="text-xs font-bold text-slate-100 uppercase tracking-widest bg-[#131b2f] px-2 py-0.5 rounded border border-white/5">Valenciennes</span>
               </div>
 
               <div className="absolute top-[200px] left-[85px] -translate-x-full flex flex-col items-center mr-2">
-                <span className="text-[9px] font-bold text-slate-100 uppercase tracking-widest bg-[#131b2f] px-2 py-0.5 rounded border border-white/5">Lens</span>
+                <span className="text-xs font-bold text-slate-100 uppercase tracking-widest bg-[#131b2f] px-2 py-0.5 rounded border border-white/5">Lens</span>
               </div>
 
               <div className="absolute top-[140px] left-[310px] flex flex-col items-center">
-                <span className="text-[9px] font-bold text-slate-100 uppercase tracking-widest bg-[#131b2f] px-2 py-0.5 rounded border border-white/5">Cambrai</span>
+                <span className="text-xs font-bold text-slate-100 uppercase tracking-widest bg-[#131b2f] px-2 py-0.5 rounded border border-white/5">Cambrai</span>
               </div>
             </div>
             

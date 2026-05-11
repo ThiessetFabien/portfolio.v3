@@ -94,6 +94,9 @@ export default function Hero({ data }: { data: any }) {
                   src="/assets/hero.webp" 
                   alt="Portrait de Fabien Thiesset, souriant et à l'écoute dans un environnement d'innovation éthique" 
                   className="w-full h-full object-cover rounded-[60px]"
+                  width={500}
+                  height={500}
+                  fetchpriority="high"
                 />
               </div>
             </div>

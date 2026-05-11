@@ -14,18 +14,18 @@ export default function SkillsSection({ data }: { data: any }) {
   if (!data) return null;
 
   return (
-    <section id="skills" className="bg-[#0a0f1d] text-slate-300 overflow-hidden relative border-t border-white/5">
+    <section id="skills" role="region" aria-labelledby="skills-title" className="bg-[#0a0f1d] text-slate-300 overflow-hidden relative border-t border-white/5">
       <div className="section-padding">
         <div className="flex flex-col md:flex-row md:items-center justify-between mb-16 gap-6">
           <div>
-            <h2 className="heading-primary text-3xl sm:text-4xl mb-4">
+            <h2 id="skills-title" className="heading-primary text-3xl sm:text-4xl mb-4">
               Mes <span className="text-teal-400 italic serif">Expertises</span>.
             </h2>
             <p className="text-slate-200 max-w-lg font-medium">Un mélange unique où chaque compétence technique est guidée par une valeur humaine profonde.</p>
           </div>
           <div className="flex flex-wrap gap-2">
-            <div className="px-4 py-2 bg-white/5 border border-white/10 rounded-full text-[10px] font-bold uppercase tracking-widest text-slate-100">Français (Maternel)</div>
-            <div className="px-4 py-2 bg-white/5 border border-white/10 rounded-full text-[10px] font-bold uppercase tracking-widest text-slate-100">Anglais (Intermédiaire)</div>
+            <div className="px-4 py-2 bg-white/5 border border-white/10 rounded-full text-xs font-bold uppercase tracking-widest text-slate-100">Français (Maternel)</div>
+            <div className="px-4 py-2 bg-white/5 border border-white/10 rounded-full text-xs font-bold uppercase tracking-widest text-slate-100">Anglais (Intermédiaire)</div>
           </div>
         </div>
 

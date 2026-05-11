@@ -18,7 +18,7 @@ export default function Experience({ data }: { data: any }) {
   if (!data) return null;
 
   return (
-    <section id="experience" className="bg-[#131b2f] relative border-t border-white/5" aria-labelledby="experience-title">
+    <section id="experience" role="region" aria-labelledby="experience-title" className="bg-[#131b2f] relative border-t border-white/5">
       <div className="section-padding">
         <h2 id="experience-title" className="font-display text-4xl font-bold text-slate-100 mb-16 text-center">
           Parcours & <span className="text-teal-400">Evolution</span>.
@@ -39,7 +39,7 @@ export default function Experience({ data }: { data: any }) {
                   </div>
                   <div className="bg-[#0a0f1d] p-6 rounded-2xl border border-white/5 shadow-lg transition-all hover:border-teal-500/30">
                     <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4 gap-2">
-                      <span className="inline-block text-[10px] font-bold uppercase tracking-widest text-teal-200 bg-teal-900/50 px-2 py-1 rounded-md border border-teal-500/20 w-fit">{exp.tag}</span>
+                      <span className="inline-block text-xs font-bold uppercase tracking-widest text-teal-200 bg-teal-900/50 px-2 py-1 rounded-md border border-teal-500/20 w-fit">{exp.tag}</span>
                       <span className="text-xs font-mono text-slate-400 font-bold sm:text-right">{exp.date}</span>
                     </div>
                     <h4 className="font-bold text-slate-100 text-xl sm:text-2xl mb-1">{exp.title}</h4>
@@ -64,7 +64,7 @@ export default function Experience({ data }: { data: any }) {
                   style={{ transitionDelay: `${i * 100}ms` }}
                 >
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-3 gap-2">
-                    <div className="text-[10px] font-bold text-teal-400 uppercase tracking-widest flex items-center">
+                    <div className="text-xs font-bold text-teal-400 uppercase tracking-widest flex items-center">
                       <Calendar className="w-3 h-3 mr-2" aria-hidden="true" /> {edu.date}
                     </div>
                   </div>

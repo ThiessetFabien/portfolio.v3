@@ -101,6 +101,33 @@ z-[0]   → Base content
 - Fixed-height cards need **both** a `min-h` and content overflow handling on the back face
 - Never use `line-clamp` on primary descriptive text — use it only on secondary/supporting text
 - Tech tag rows: `flex-wrap gap-2` — never `flex` without `flex-wrap`
+- **Backend & Form Security Standards**:
+    - **Strict Typing**: Always validate input types (`typeof === 'string'`) before processing to prevent TypeErrors and malformed data injections.
+    - **Sanitization**: Systematically use `validator.escape()` for all user-provided strings before inclusion in emails or DB.
+    - **Email Normalization**: Use `validator.normalizeEmail()` but always handle the `false` return value to avoid `TypeError`.
+    - **Honeypot**: Maintain a hidden `bot-field` for basic spam protection.
+    - **Error Transparency**: Never reveal sensitive server details in responses; return generic but helpful messages (e.g., "Format d'email invalide").
+
+- **Lighthouse / SEO Performance Standards**:
+    - **Target: Lighthouse AAA (A11y)**: Aim for a perfect 100/100 and WCAG 2.1 AAA compliance.
+    - **Contrast**: Maintain a minimum contrast ratio of 7:1 for normal text (AAA standard).
+    - **Text Size**: Avoid text smaller than 12px (0.75rem) even for secondary labels.
+    - **LCP Optimization**: Important hero images must have `fetchpriority="high"`.
+    - **CLS Prevention**: All images must have explicit `width` and `height` attributes or a reserved aspect-ratio container.
+    - **A11y (Accessibility)**: All interactive elements (buttons, links) must have an `aria-label` or descriptive text. Tap targets must be at least 44x44px. Every section must have a `role="region"` and `aria-labelledby`.
+    - **SEO**: Always include a canonical URL and meta descriptions.
+
+- **Alwaysdata Deployment Procedure (Local Build Strategy)**:
+    - **Context**: Remote `npm run build` often fails on shared hosting due to RAM limits.
+    - **Step 1 (Local)**: Run `npm run build` to generate the `dist/` folder.
+    - **Step 2 (Local)**: Ensure `server.cjs` and `api/` are at the root.
+    - **Step 3 (Transfer)**: Upload only `dist/`, `api/`, `server.cjs`, and `package.json` via SFTP.
+    - **Step 4 (Remote)**: Run `npm install --production` on the Alwaysdata terminal.
+    - **Step 5 (Config)**: Set environment variables (`SMTP_USER`, `SMTP_PASS`) in the Alwaysdata dashboard.
+
+- **Skill & Development Security Audit**:
+    - **Skill Integrity**: Every new AI Skill created must be audited for security patterns (no hardcoded secrets, no dangerous commands, no injection risks in prompts).
+    - **Frontend Sanitization**: Beyond React's native protection, prioritize **Schema Validation** (e.g., Zod) and, if rendering raw HTML, use a sanitizer like **DOMPurify** to prevent client-side injections.
 
 ---
 
@@ -126,6 +153,7 @@ Before any deployment, each role must perform a "Quality & Meaning" check to ens
 - [ ] Is the design **Responsive** and visually **Premium**?
 - [ ] Does it demonstrate **AI/React** senior expertise?
 - [ ] Is there a clear **Conversion Tunnel** (meaningful journey) for the visitor?
-- [ ] Has it passed the **A11y & Performance** audit?
+- [ ] **Security**: Are all inputs strictly type-checked and escaped? No `TypeError` risks in validators?
+- [ ] **Lighthouse**: Does the page achieve 90+ on Perf/A11y/SEO? (Check `fetchpriority`, `width/height`, `aria-labels`).
 - [ ] **Responsive Anti-Regression**: Have all rules in the "Responsive Engineering Standards" section been applied?
 - [ ] **CONCILIATION**: Have all 5 roles approved the "Soul" of the change? (No loss of human-centricity).

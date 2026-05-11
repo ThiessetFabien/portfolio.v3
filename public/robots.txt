@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 
 # Sitemap help
-Sitemap: https://fabien-thiesset.fr/sitemap.xml
+Sitemap: https://fabienthiesset.alwaysdata.net/sitemap.xml
