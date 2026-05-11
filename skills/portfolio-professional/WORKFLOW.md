@@ -129,6 +129,13 @@ z-[0]   → Base content
     - **Skill Integrity**: Every new AI Skill created must be audited for security patterns (no hardcoded secrets, no dangerous commands, no injection risks in prompts).
     - **Frontend Sanitization**: Beyond React's native protection, prioritize **Schema Validation** (e.g., Zod) and, if rendering raw HTML, use a sanitizer like **DOMPurify** to prevent client-side injections.
 
+- **Zero-Regression Engineering Standards (QA Skill)**:
+    - **Principle**: Any fix or evolution must be validated against a test suite to ensure no existing functionality is broken.
+    - **Mandatory Check**: Run `node scratch/test_contact_suite.cjs` after any change to `api/contact.cjs` or the contact form.
+    - **Build Validation**: Always run `./scripts/deploy-prepare.sh` before deployment to verify production bundle integrity.
+    - **UI Integrity**: Use a responsive audit checklist (Mobile/Tablet/Desktop) for every frontend modification.
+    - **Commit Strategy**: Always commit successful audits and tests before starting a new phase of development.
+
 ---
 
 ## 🤝 The Conciliation Review (Final Gate)
