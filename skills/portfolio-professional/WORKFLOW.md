@@ -101,6 +101,12 @@ z-[0]   → Base content
 - Fixed-height cards need **both** a `min-h` and content overflow handling on the back face
 - Never use `line-clamp` on primary descriptive text — use it only on secondary/supporting text
 - Tech tag rows: `flex-wrap gap-2` — never `flex` without `flex-wrap`
+- **Shadows & Visual Stability**:
+    - **Standardize**: Always use standard React Native shadow properties (`shadowColor`, `shadowOffset`, `shadowOpacity`, `shadowRadius`, `elevation`) for maximum compatibility.
+    - **Avoid boxShadow**: Avoid `boxShadow` (string format) in shared theme files unless strictly necessary for complex web effects, as it can cause "property doesn't exist" errors in certain Expo/Native environments.
+    - **Named Exports**: Use named exports for theme tokens (`Colors`, `Shadows`, `Spacing`) to prevent `undefined` errors from default import mistakes.
+    - **Check Imports**: Systematically verify that every component using a theme token imports it explicitly. A missing import is the #1 cause of "white screen" or "property doesn't exist" crashes.
+    - **Alias for Compatibility**: Provide both `Shadows` and `shadows` aliases in the design system to prevent runtime errors from casing typos.
 - **Backend & Form Security Standards**:
     - **Strict Typing**: Always validate input types (`typeof === 'string'`) before processing to prevent TypeErrors and malformed data injections.
     - **Sanitization**: Systematically use `validator.escape()` for all user-provided strings before inclusion in emails or DB.
@@ -134,6 +140,7 @@ z-[0]   → Base content
     - **Mandatory Check**: Run `node scratch/test_contact_suite.cjs` after any change to `api/contact.cjs` or the contact form.
     - **Build Validation**: Always run `./scripts/deploy-prepare.sh` before deployment to verify production bundle integrity.
     - **UI Integrity**: Use a responsive audit checklist (Mobile/Tablet/Desktop) for every frontend modification.
+    - **Shadow Check**: Verify that shadow effects are rendered correctly on both Web and Mobile after any theme modification.
     - **Commit Strategy**: Always commit successful audits and tests before starting a new phase of development.
 
 ---
