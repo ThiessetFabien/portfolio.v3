@@ -1,91 +1,97 @@
 const nodemailer = require('nodemailer');
-const validator = require('validator');
 
 /**
  * Handler pour Alwaysdata (Node.js)
- * Ce script reçoit les données du formulaire et les envoie par mail.
+ * Validation manuelle sans validator.normalizeEmail qui retourne `false` sur email invalide.
  */
 module.exports = async (req, res) => {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Méthode non autorisée' });
   }
 
-  // 1. Validation de type stricte (Sécurité Anti-Injection)
-  const { name: rawName, email: rawEmail, message: rawMessage, 'bot-field': botField } = req.body;
+  const body = req.body || {};
+  const name    = (body.name    || '').toString().trim();
+  const email   = (body.email   || '').toString().trim().toLowerCase();
+  const message = (body.message || '').toString().trim();
+  const botField = body['bot-field'];
 
-  if (
-    typeof rawName !== 'string' || 
-    typeof rawEmail !== 'string' || 
-    typeof rawMessage !== 'string'
-  ) {
-    console.error('Validation échouée: Types invalides');
-    return res.status(400).json({ error: 'Format de données invalide' });
-  }
-
-  // 2. Protection Honeypot
+  // 1. Protection Honeypot
   if (botField) {
     console.log('Spam détecté via honeypot');
-    return res.status(200).json({ success: true, message: 'Message traité' });
+    return res.status(200).json({ success: true });
   }
 
-  // 3. Nettoyage et Validation
-  const name = validator.escape(rawName.trim());
-  const message = validator.escape(rawMessage.trim());
-  
-  // normalizeEmail peut renvoyer false, on doit d'abord vérifier s'il est vide
-  if (validator.isEmpty(name) || validator.isEmpty(rawEmail.trim()) || validator.isEmpty(message)) {
-    console.error('Validation échouée: Champs vides');
-    return res.status(400).json({ error: 'Tous les champs sont obligatoires' });
+  // 2. Validation des champs
+  if (!name || !email || !message) {
+    return res.status(400).json({ error: 'Tous les champs sont obligatoires.' });
   }
 
-  const email = validator.normalizeEmail(rawEmail);
-  if (!email || !validator.isEmail(email)) {
-    console.error('Validation échouée: Email invalide');
-    return res.status(400).json({ error: 'Email invalide' });
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    return res.status(400).json({ error: 'Adresse email invalide.' });
   }
 
-  if (!validator.isLength(name, { min: 2, max: 100 })) {
-    return res.status(400).json({ error: 'Le nom doit contenir entre 2 et 100 caractères' });
+  if (name.length < 2 || name.length > 100) {
+    return res.status(400).json({ error: 'Le nom doit contenir entre 2 et 100 caractères.' });
   }
 
-  if (!validator.isLength(message, { min: 10, max: 5000 })) {
-    return res.status(400).json({ error: 'Le message doit contenir entre 10 et 5000 caractères' });
+  if (message.length < 10 || message.length > 5000) {
+    return res.status(400).json({ error: 'Le message doit contenir entre 10 et 5000 caractères.' });
+  }
+
+  // 3. Vérification des variables d'environnement
+  if (!process.env.SMTP_USER || !process.env.SMTP_PASS) {
+    console.error('Variables SMTP manquantes : SMTP_USER ou SMTP_PASS non définies.');
+    return res.status(500).json({ error: 'Configuration serveur incomplète. Contactez l\'administrateur.' });
   }
 
   try {
-    // 3. Configuration SMTP Alwaysdata
-    // Ces variables devront être configurées dans l'environnement Alwaysdata
     const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST || 'smtp.alwaysdata.com',
-      port: 587,
+      host:   process.env.SMTP_HOST || 'smtp.alwaysdata.com',
+      port:   587,
       secure: false,
       auth: {
         user: process.env.SMTP_USER,
         pass: process.env.SMTP_PASS,
       },
+      tls: {
+        // Tolère les certificats auto-signés sur Alwaysdata
+        rejectUnauthorized: false,
+      },
     });
 
+    const recipient = process.env.CONTACT_EMAIL || process.env.SMTP_USER;
+
     const mailOptions = {
-      from: `"${name}" <${process.env.SMTP_USER}>`,
-      to: process.env.CONTACT_EMAIL || process.env.SMTP_USER,
+      from:    `"Portfolio Contact" <${process.env.SMTP_USER}>`,
+      to:      recipient,
       replyTo: email,
-      subject: `[Portfolio] Nouveau message de ${name}`,
-      text: `Nom: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
+      subject: `[Portfolio] Message de ${name}`,
+      text:    `Nom: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
       html: `
-        <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #eee; border-radius: 10px;">
-          <h2 style="color: #2dd4bf;">Nouveau message du Portfolio</h2>
-          <p><strong>De:</strong> ${name} (&lt;${email}&gt;)</p>
-          <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
-          <p style="white-space: pre-wrap; line-height: 1.6;">${message}</p>
+        <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 24px; border: 1px solid #e2e8f0; border-radius: 12px;">
+          <h2 style="color: #2dd4bf; margin-top: 0;">Nouveau message du Portfolio</h2>
+          <table style="width: 100%; border-collapse: collapse;">
+            <tr>
+              <td style="padding: 8px 0; color: #64748b; font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; width: 80px;">Nom</td>
+              <td style="padding: 8px 0; color: #1e293b; font-weight: 600;">${name}</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px 0; color: #64748b; font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em;">Email</td>
+              <td style="padding: 8px 0;"><a href="mailto:${email}" style="color: #2dd4bf;">${email}</a></td>
+            </tr>
+          </table>
+          <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 16px 0;" />
+          <p style="white-space: pre-wrap; line-height: 1.7; color: #334155;">${message}</p>
         </div>
       `,
     };
 
     await transporter.sendMail(mailOptions);
-
     return res.status(200).json({ success: true });
+
   } catch (error) {
-    console.error('Erreur SMTP:', error);
-    return res.status(500).json({ error: 'Erreur lors de l\'envoi du mail' });
+    console.error('Erreur SMTP:', error.message);
+    return res.status(500).json({ error: 'Erreur lors de l\'envoi du mail. Réessayez plus tard.' });
   }
 };

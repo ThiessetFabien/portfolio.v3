@@ -1,5 +1,5 @@
 import React from 'react';
-import { HeartPulse, BrainCircuit, ArrowRight, MapPin, Navigation } from 'lucide-react';
+import { HeartPulse, BrainCircuit, ArrowRight, MapPin, Mail } from 'lucide-react';
 
 export default function Contact({ mobilityData }: { mobilityData: any }) {
   const [status, setStatus] = React.useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
@@ -100,6 +100,20 @@ export default function Contact({ mobilityData }: { mobilityData: any }) {
                   </p>
                 </div>
               </div>
+
+              {/* Email direct */}
+              <a
+                href="mailto:thiessetfabienpro@gmail.com"
+                className="flex items-center space-x-3 p-5 bg-[#0a0f1d]/50 rounded-2xl border border-white/5 hover:border-teal-400/30 transition-all group/email"
+              >
+                <div className="w-10 h-10 rounded-xl bg-teal-500/10 flex items-center justify-center flex-shrink-0 group-hover/email:scale-110 transition-transform">
+                  <Mail className="w-5 h-5 text-teal-400" aria-hidden="true" />
+                </div>
+                <div>
+                  <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-0.5">Contact direct</p>
+                  <p className="text-slate-100 text-sm font-medium group-hover/email:text-teal-400 transition-colors">thiessetfabienpro@gmail.com</p>
+                </div>
+              </a>
             </div>
 
             {/* Form Column */}
