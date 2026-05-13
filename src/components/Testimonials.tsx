@@ -27,7 +27,7 @@ export default function Testimonials({ data }: { data: any[] }) {
                 </p>
                 <div className="flex items-center justify-between pt-6 border-t border-white/5">
                   <div>
-                    <h4 className="font-bold text-slate-100">{t.name}</h4>
+                    <h3 className="font-bold text-slate-100">{t.name}</h3>
                     <p className="text-xs text-slate-300 font-mono uppercase tracking-widest">{t.role}</p>
                   </div>
                   <div className="text-[10px] font-bold text-teal-400 uppercase tracking-tighter">

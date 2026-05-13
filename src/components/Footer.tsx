@@ -8,7 +8,7 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center gap-12 mb-12">
           <div className="flex flex-col items-center md:items-start">
             <div className="flex items-center space-x-3 mb-2">
-              <img src="/assets/logo.webp" alt="" className="h-8 w-8 object-contain" aria-hidden="true" />
+              <img src="/assets/logo.webp" alt="" className="h-8 w-8 object-contain" aria-hidden="true" loading="lazy" decoding="async" />
               <div className="font-display font-bold text-2xl tracking-tighter text-slate-100">
                 Fabien Thiesset<span className="text-teal-400">.</span>
               </div>

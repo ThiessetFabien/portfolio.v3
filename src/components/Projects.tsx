@@ -94,6 +94,8 @@ export default function Projects({ data }: { data: any }) {
                       src={p.image} 
                       alt={`Capture d'écran du projet ${p.title}`} 
                       className="w-full h-full object-cover opacity-80 mix-blend-screen group-hover:scale-105 group-hover:opacity-100 transition-all duration-700" 
+                      loading="lazy"
+                      decoding="async"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0a0f1d] to-transparent opacity-80" />
                     
