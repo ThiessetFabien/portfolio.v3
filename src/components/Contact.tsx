@@ -152,9 +152,17 @@ export default function Contact({ mobilityData }: { mobilityData: any }) {
                       <input required type="email" id="email" name="email" className="w-full bg-white/[0.03] border border-white/5 rounded-2xl px-5 py-4 text-slate-100 focus:outline-none focus:border-teal-400/50 focus:bg-white/[0.06] focus:ring-1 focus:ring-teal-400/30 transition-all placeholder-slate-600 font-medium" placeholder="jean@entreprise.com" />
                     </div>
                   </div>
-                  <div className="mb-10 space-y-2">
+                  <div className="mb-8 space-y-2">
                     <label htmlFor="message" className="block text-xs font-black text-slate-400 uppercase tracking-[0.2em] ml-1">Votre Projet / Enjeux</label>
                     <textarea required id="message" name="message" rows={4} className="w-full bg-white/[0.03] border border-white/5 rounded-2xl px-5 py-4 text-slate-100 focus:outline-none focus:border-teal-400/50 focus:bg-white/[0.06] focus:ring-1 focus:ring-teal-400/30 transition-all resize-none placeholder-slate-600 font-medium leading-relaxed" placeholder="Décrivez brièvement vos besoins en MedTech ou Data..."></textarea>
+                  </div>
+                  
+                  {/* Mention RGPD obligatorie */}
+                  <div className="mb-8 flex items-start space-x-3">
+                    <input required type="checkbox" id="rgpd" name="rgpd" className="mt-1 w-4 h-4 rounded border-white/10 bg-white/[0.03] text-teal-500 focus:ring-teal-500/50 accent-teal-500 cursor-pointer" />
+                    <label htmlFor="rgpd" className="text-[11px] text-slate-400 leading-relaxed italic cursor-pointer">
+                      En soumettant ce formulaire, j'accepte que les informations saisies soient exploitées exclusivement dans le cadre de ma demande de contact. Aucune donnée n'est stockée en base de données.
+                    </label>
                   </div>
                   
                   {status === 'error' && (
