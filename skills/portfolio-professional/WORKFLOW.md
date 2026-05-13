@@ -103,19 +103,30 @@ z-[0]   → Base content
 - Tech tag rows: `flex-wrap gap-2` — never `flex` without `flex-wrap`
 - **Backend & Form Security Standards**:
     - **Strict Typing**: Always validate input types (`typeof === 'string'`) before processing to prevent TypeErrors and malformed data injections.
-    - **Sanitization**: Systematically use `validator.escape()` for all user-provided strings before inclusion in emails or DB.
-    - **Email Normalization**: Use `validator.normalizeEmail()` but always handle the `false` return value to avoid `TypeError`.
-    - **Honeypot**: Maintain a hidden `bot-field` for basic spam protection.
-    - **Error Transparency**: Never reveal sensitive server details in responses; return generic but helpful messages (e.g., "Format d'email invalide").
+    - **Manual Validation & Sanitization**: Prioritize robust manual regex for emails and manual escaping of special characters to avoid the fragility of external libraries (e.g., `validator`'s boolean returns).
+    - **Spam Protection**: Use a combined **Honeypot** (`bot-field`) and server-side timing analysis.
+    - **Error Transparency**: Never reveal sensitive server details; return generic but helpful status codes (400 for validation, 500 for server issues).
+    - **Alwaysdata SMTP**: Use TLS-tolerant configuration with dedicated environment variables (`SMTP_HOST`, `SMTP_USER`, `SMTP_PASS`).
+
+- **Eco-Design & Asset Performance Standards**:
+    - **Next-Gen Formats**: **WebP is mandatory** for all assets. No PNG/JPG except for PWA root manifests.
+    - **Asset Weight Budget**:
+        - **Hero Image**: Max 100 KiB (Target 80 KiB).
+        - **Project Captures**: Max 50 KiB (Target 35 KiB).
+        - **Logos/Icons**: Max 5 KiB.
+    - **LCP Optimization**: The Hero image MUST have `<link rel="preload" as="image" fetchpriority="high">` in `index.html`.
+    - **Render Performance**: Use `decoding="async"` and `loading="lazy"` for all images below the fold.
+    - **Font Strategy**: Use locally hosted woff2 fonts to avoid external round-trips and layout shifts.
 
 - **Lighthouse / SEO Performance Standards**:
-    - **Target: Lighthouse AAA (A11y)**: Aim for a perfect 100/100 and WCAG 2.1 AAA compliance.
-    - **Contrast**: Maintain a minimum contrast ratio of 7:1 for normal text (AAA standard).
-    - **Text Size**: Avoid text smaller than 12px (0.75rem) even for secondary labels.
-    - **LCP Optimization**: Important hero images must have `fetchpriority="high"`.
-    - **CLS Prevention**: All images must have explicit `width` and `height` attributes or a reserved aspect-ratio container.
-    - **A11y (Accessibility)**: All interactive elements (buttons, links) must have an `aria-label` or descriptive text. Tap targets must be at least 44x44px. Every section must have a `role="region"` and `aria-labelledby`.
-    - **SEO**: Always include a canonical URL and meta descriptions.
+    - **Target: Lighthouse Perfect Score**: Aim for 100/100 on Performance, Accessibility, SEO, and Best Practices.
+    - **A11y (Accessibility)**:
+        - **Tap Targets**: Every interactive element (buttons, social links, project tags) MUST be at least **44x44px** (padding included).
+        - **Heading Hierarchy**: Strict sequential order: H1 -> H2 -> H3. **Never skip levels** (e.g., no H4 immediately after H2).
+        - **ARIA Labels**: Every link/button must have an `aria-label` or visible text. External links must explicitly mention "(nouvel onglet)" in their label.
+        - **Contrast**: Maintain a minimum contrast ratio of 7:1 (AAA standard).
+    - **SEO**: Always include a canonical URL, meta descriptions, and OpenGraph `og:image` pointing to a WebP asset.
+    - **CLS Prevention**: All images must have explicit `width` and `height` attributes.
 
 - **Alwaysdata Deployment Procedure (Local Build Strategy)**:
     - **Context**: Remote `npm run build` often fails on shared hosting due to RAM limits.

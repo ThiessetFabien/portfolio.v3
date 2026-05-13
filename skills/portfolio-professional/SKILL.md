@@ -45,11 +45,13 @@ A critical review of the current portfolio UI/UX.
 ### 🔍 A11y & Performance Auditor (Q/A Mode)
 Ensures the site is inclusive, fast, and visually stable.
 - **Checklist**:
-    - Accessibility (Aria-labels, contrast, keyboard nav).
-    - Responsive alignment (Fixed heights for dynamic text blocks, outward margins for mobile overlays).
-    - 3D Animation Stability (Hardware acceleration `transform-gpu`, no jitter on hover hitboxes, isolated absolute borders).
-    - SEO & Meta data.
-    - CI/CD integration checks.
+    - **Lighthouse Excellence**: Target 100/100 on all categories.
+    - **Eco-Design**: Mandatory WebP, LCP preloading, and aggressive asset weight budgeting (<100KB for Hero, <50KB for Projects).
+    - **A11y (AAA)**: Aria-labels, 7:1 contrast, 44x44px tap targets, and sequential heading hierarchy.
+    - **Responsive Alignment**: Fixed heights for dynamic text blocks, outward margins for mobile overlays.
+    - **3D Animation Stability**: Hardware acceleration `transform-gpu`, no jitter on hover hitboxes, isolated absolute borders.
+    - **SEO & Meta data**.
+    - **CI/CD & Deployment**: Build validation and environment variable integrity.
 
 ---
 
