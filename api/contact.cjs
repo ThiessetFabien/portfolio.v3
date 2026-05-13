@@ -45,6 +45,9 @@ module.exports = async (req, res) => {
     return res.status(500).json({ error: 'Configuration serveur incomplète. Contactez l\'administrateur.' });
   }
 
+  // Log de debug sécurisé (affiche juste le début de l'user)
+  console.log(`Tentative d'envoi via SMTP: ${process.env.SMTP_USER.substring(0, 3)}...`);
+
   try {
     const transporter = nodemailer.createTransport({
       host:   process.env.SMTP_HOST || 'smtp.alwaysdata.com',
