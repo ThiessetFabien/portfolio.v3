@@ -51,8 +51,32 @@ export default function App() {
         });
       }, { threshold: 0.1 });
 
+      // Observer les éléments déjà présents
       document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-      return () => observer.disconnect();
+
+      // Surveiller les éléments ajoutés dynamiquement par Suspense/Lazy
+      const mutationObserver = new MutationObserver((mutations) => {
+        mutations.forEach(mutation => {
+          mutation.addedNodes.forEach(node => {
+            if (node.nodeType === 1) { // Element node
+              const el = node as HTMLElement;
+              if (el.classList && el.classList.contains('reveal')) {
+                observer.observe(el);
+              }
+              if (el.querySelectorAll) {
+                el.querySelectorAll('.reveal').forEach(child => observer.observe(child));
+              }
+            }
+          });
+        });
+      });
+
+      mutationObserver.observe(document.body, { childList: true, subtree: true });
+
+      return () => {
+        observer.disconnect();
+        mutationObserver.disconnect();
+      };
     }
   }, [loading]);
 
