@@ -90,14 +90,17 @@ export default function Hero({ data }: { data: any }) {
             <div className="relative aspect-square max-w-[500px] mx-auto">
               <div className="absolute inset-0 border border-white/10 rounded-[60px] scale-[1.02]" aria-hidden="true" />
               <div className="absolute inset-0 overflow-hidden rounded-[60px]">
-                <img 
-                  src="/assets/hero.webp" 
-                  alt="Portrait de Fabien Thiesset, souriant et à l'écoute dans un environnement d'innovation éthique" 
-                  className="w-full h-full object-cover rounded-[60px]"
-                  width={500}
-                  height={500}
-                  fetchpriority="high"
-                />
+                <picture>
+                  <source srcSet="/assets/hero-mobile.webp" media="(max-width: 640px)" />
+                  <img 
+                    src="/assets/hero.webp" 
+                    alt="Portrait de Fabien Thiesset, Expert MedTech & Data" 
+                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100"
+                    fetchpriority="high"
+                    decoding="sync"
+                    loading="eager"
+                  />
+                </picture>
               </div>
             </div>
  

@@ -33,7 +33,7 @@ export default function Story({ data }: { data: any }) {
           {data.manifesto.map((item: any, i: number) => (
             <div key={item.id} className="group p-8 rounded-3xl bg-[#131b2f]/40 border border-white/5 hover:border-teal-500/20 transition-all duration-500 flex flex-col">
               <div className="flex items-center justify-between mb-6">
-                <span className="text-4xl font-display font-bold text-teal-900/40 group-hover:text-teal-400/20 transition-colors">
+                <span className="text-4xl font-display font-bold text-teal-700 transition-colors group-hover:text-teal-400/40">
                   {item.id}
                 </span>
                 <div className="w-8 h-px bg-white/10" />

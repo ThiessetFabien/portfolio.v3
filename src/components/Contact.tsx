@@ -64,12 +64,12 @@ export default function Contact({ mobilityData }: { mobilityData: any }) {
               <div className="grid sm:grid-cols-2 gap-4">
                 <div className="p-6 bg-[#0a0f1d]/50 rounded-2xl border border-white/5 hover:border-teal-400/30 transition-colors group">
                   <HeartPulse className="w-6 h-6 text-teal-400 mb-4 group-hover:scale-110 transition-transform" aria-hidden="true" />
-                  <h4 className="font-bold text-slate-100 text-sm mb-2">Culture Médicale</h4>
+                  <h3 className="font-bold text-slate-100 text-sm mb-2">Culture Médicale</h3>
                   <p className="text-slate-400 text-[11px] leading-relaxed italic">17 ans d'immersion clinique pour des solutions qui ont du sens.</p>
                 </div>
                 <div className="p-6 bg-[#0a0f1d]/50 rounded-2xl border border-white/5 hover:border-teal-400/30 transition-colors group">
                   <BrainCircuit className="w-6 h-6 text-teal-400 mb-4 group-hover:scale-110 transition-transform" aria-hidden="true" />
-                  <h4 className="font-bold text-slate-100 text-sm mb-2">Expertise Tech</h4>
+                  <h3 className="font-bold text-slate-100 text-sm mb-2">Expertise Tech</h3>
                   <p className="text-slate-400 text-[11px] leading-relaxed italic">Une rigueur de développement au service de la performance data.</p>
                 </div>
               </div>
@@ -82,7 +82,7 @@ export default function Contact({ mobilityData }: { mobilityData: any }) {
                       <MapPin className="w-5 h-5 text-teal-400" aria-hidden="true" />
                     </div>
                     <div>
-                      <h4 className="font-bold text-slate-100 text-sm">Ancrage & Mobilité</h4>
+                      <h3 className="font-bold text-slate-100 text-sm">Ancrage & Mobilité</h3>
                       <p className="text-teal-400 text-[10px] font-black uppercase tracking-widest">Hauts-de-France</p>
                     </div>
                   </div>
@@ -123,7 +123,7 @@ export default function Contact({ mobilityData }: { mobilityData: any }) {
                   <div className="w-20 h-20 bg-teal-500 text-[#0a0f1d] rounded-full flex items-center justify-center mx-auto mb-8 shadow-[0_0_40px_rgba(45,212,191,0.4)]">
                     <HeartPulse className="w-10 h-10" />
                   </div>
-                  <h3 className="text-3xl font-bold text-slate-100 mb-4">Message reçu !</h3>
+                  <h2 className="text-3xl font-bold text-slate-100 mb-4">Message reçu !</h2>
                   <p className="text-slate-300 text-lg">Merci. Je traiterai votre demande sous 24h avec la plus grande attention.</p>
                   <button onClick={() => setStatus('idle')} className="mt-10 text-teal-400 font-bold hover:text-white transition-colors flex items-center justify-center mx-auto space-x-2">
                     <ArrowRight className="w-4 h-4 rotate-180" />
