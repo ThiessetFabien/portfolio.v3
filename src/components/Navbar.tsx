@@ -6,37 +6,34 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [showContactBtn, setShowContactBtn] = useState(false);
   const [progress, setProgress] = useState(0);
-  const [height, setHeight] = useState(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   useEffect(() => {
     let requestRunning = false;
-
-    const updateHeight = () => {
-      const h = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      setHeight(h);
-    };
 
     const handleScroll = () => {
       if (!requestRunning) {
         requestRunning = true;
         requestAnimationFrame(() => {
           const scrollY = window.scrollY;
+          const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+          
           setIsScrolled(scrollY > 50);
           setShowContactBtn(scrollY > 600);
-          setProgress((scrollY / height) * 100);
+          setProgress(docHeight > 0 ? (scrollY / docHeight) * 100 : 0);
+          
           requestRunning = false;
         });
       }
     };
 
-    updateHeight();
-    window.addEventListener('resize', updateHeight);
+    // Calcul initial
+    handleScroll();
+
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => {
-      window.removeEventListener('resize', updateHeight);
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [height]);
+  }, []);
 
   // Close menu on Escape key
   useEffect(() => {
