@@ -80,7 +80,7 @@ export default function Navbar() {
           {/* Logo */}
           <a href="#hero" className="flex items-center space-x-3 group relative z-[70]">
             <img
-              src="/assets/logo.png"
+              src="/assets/logo.webp"
               alt="Fabien Thiesset - Lead Developer & Architecte Santé"
               className="h-10 w-10 object-contain brightness-125 contrast-125 group-hover:scale-110 transition-transform"
             />

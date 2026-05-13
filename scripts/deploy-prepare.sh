@@ -19,10 +19,14 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-# 3. Création de l'archive
-echo "📦 Création de l'archive deploy_pack.zip..."
-# On inclut uniquement le nécessaire pour la production
-zip -r deploy_pack.zip dist api server.cjs package.json package-lock.json WORKFLOW.md
+# 3. Installation des dépendances de production
+echo "📦 Installation des dépendances de production..."
+npm install --omit=dev
 
-echo "✅ Prêt ! Tu n'as plus qu'à envoyer 'deploy_pack.zip' sur Alwaysdata et le dézipper."
-echo "💡 Rappel : Sur Alwaysdata, lance 'npm install --production' après avoir dézippé."
+# 4. Création de l'archive
+echo "🗜️  Création de l'archive deploy_pack.zip (avec node_modules)..."
+# On inclut TOUT le nécessaire pour rouler sans npm install sur le serveur
+zip -r deploy_pack.zip dist api node_modules server.cjs package.json
+
+echo "✅ Prêt ! Envoie 'deploy_pack.zip' sur Alwaysdata, dézippe-le, et lance 'node server.cjs'."
+echo "💡 Plus besoin de faire 'npm install' sur le serveur !"

@@ -149,7 +149,7 @@
       "title": "Plume.ai",
       "role": "Lead Developer & Architecte",
       "desc": "Conception d'un écosystème de gestion pour clubs sportifs avec IA intégrée. Le défi : offrir la puissance du cloud avec une confidentialité absolue grâce à l'Edge Computing.",
-      "image": "/assets/projects/plume_dashboard.png",
+      "image": "/assets/projects/plume_dashboard.webp",
       "tags": ["Ollama", "Confidentialité"],
       "impact": "Souveraineté des données sportives",
       "confidential": true,
@@ -165,7 +165,7 @@
       "title": "CasaLink",
       "role": "Développeur Fullstack",
       "desc": "Application de coordination familiale inclusive. L'interface a été pensée selon les principes de la CAA (Communication Alternative Augmentée) pour être accessible à tous.",
-      "image": "/assets/projects/casalink_app.png",
+      "image": "/assets/projects/casalink_app.webp",
       "tags": ["A11y", "Inclusion"],
       "impact": "Charge mentale réduite de 25%",
       "links": [
