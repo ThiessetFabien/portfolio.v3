@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
+import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Story from './components/Story';
-import Experience from './components/Experience';
-import SkillsSection from './components/SkillsSection';
-import Projects from './components/Projects';
-import Testimonials from './components/Testimonials';
-import MobilitySection from './components/MobilitySection';
-import Contact from './components/Contact';
+import { Suspense, lazy } from 'react';
+
+const Experience = lazy(() => import('./components/Experience'));
+const SkillsSection = lazy(() => import('./components/SkillsSection'));
+const Projects = lazy(() => import('./components/Projects'));
+const Testimonials = lazy(() => import('./components/Testimonials'));
+const Contact = lazy(() => import('./components/Contact'));
 import Footer from './components/Footer';
 
 export default function App() {
@@ -15,16 +17,29 @@ export default function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('/api/data.json')
-      .then(res => res.json())
-      .then(json => {
+    try {
+      const inlineData = document.getElementById('portfolio-data');
+      if (inlineData) {
+        const json = JSON.parse(inlineData.textContent || '{}');
         setData(json);
         setLoading(false);
-      })
-      .catch(err => {
-        console.error("Failed to fetch data:", err);
-        setLoading(false);
-      });
+      } else {
+        // Fallback to fetch if not inlined
+        fetch('/api/data.json')
+          .then(res => res.json())
+          .then(json => {
+            setData(json);
+            setLoading(false);
+          })
+          .catch(err => {
+            console.error("Failed to fetch data:", err);
+            setLoading(false);
+          });
+      }
+    } catch (e) {
+      console.error("Error parsing inline data:", e);
+      setLoading(false);
+    }
   }, []);
 
   useEffect(() => {
@@ -64,11 +79,13 @@ export default function App() {
       <main id="main-content">
         <Hero data={data.hero} />
         <Story data={data.story} />
-        <Experience data={data.experience} />
-        <SkillsSection data={data.skills} />
-        <Projects data={data.projects} />
-        <Testimonials data={data.testimonials} />
-        <Contact mobilityData={data.mobility} />
+        <Suspense fallback={<div className="h-40" />}>
+          <Experience data={data.experience} />
+          <SkillsSection data={data.skills} />
+          <Projects data={data.projects} />
+          <Testimonials data={data.testimonials} />
+          <Contact mobilityData={data.mobility} />
+        </Suspense>
       </main>
       <Footer />
     </div>
