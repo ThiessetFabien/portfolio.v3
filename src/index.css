@@ -16,7 +16,7 @@
   }
 
   /* Anchor Offset for Fixed Navbar */
-  section[id] {
+  section[id], header[id] {
     scroll-margin-top: 100px;
   }
   

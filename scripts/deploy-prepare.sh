@@ -26,7 +26,7 @@ npm install --omit=dev
 # 4. Création de l'archive
 echo "🗜️  Création de l'archive deploy_pack.zip (avec node_modules)..."
 # On inclut TOUT le nécessaire pour rouler sans npm install sur le serveur
-zip -r deploy_pack.zip dist api node_modules server.cjs package.json
+zip -r deploy_pack.zip dist api node_modules server.cjs package.json .env
 
 echo "✅ Prêt ! Envoie 'deploy_pack.zip' sur Alwaysdata, dézippe-le, et lance 'node server.cjs'."
 echo "💡 Plus besoin de faire 'npm install' sur le serveur !"
