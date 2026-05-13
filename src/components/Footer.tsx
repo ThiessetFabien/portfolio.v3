@@ -5,15 +5,15 @@ export default function Footer() {
   return (
     <footer className="bg-[#03050c] text-slate-200 py-16 px-6 border-t border-white/5">
       <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-12 mb-12">
-          <div className="flex flex-col items-center md:items-start">
-            <div className="flex items-center space-x-3 mb-2">
+        <div className="flex flex-col sm:flex-row justify-between items-start gap-12 mb-12">
+          <div className="flex flex-col items-start w-full">
+            <div className="flex items-center justify-start space-x-3 mb-2">
               <img src="/assets/logo.webp" alt="" className="h-8 w-8 object-contain" aria-hidden="true" loading="lazy" decoding="async" />
               <div className="font-display font-bold text-2xl tracking-tighter text-slate-100">
                 Fabien Thiesset<span className="text-teal-400">.</span>
               </div>
             </div>
-            <p className="text-slate-400 text-xs font-mono uppercase tracking-[0.2em] text-center md:text-left">
+            <p className="text-slate-400 text-xs font-mono uppercase tracking-[0.2em] text-left">
               Engagement • Innovation • Bientraitance
             </p>
           </div>

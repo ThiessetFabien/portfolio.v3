@@ -32,7 +32,7 @@ export default function Hero({ data }: { data: any }) {
       <div className="section-padding relative z-10 w-full">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           
-          <div className="reveal flex flex-col items-center lg:items-start text-center lg:text-left">
+          <div className="reveal flex flex-col items-start text-left">
             <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/5 rounded-full mb-6 border border-white/10">
               <span className="w-2 h-2 bg-teal-400 rounded-full animate-pulse" />
               <span className="text-[10px] font-bold uppercase tracking-widest text-slate-200">{data.subtitle}</span>
@@ -50,7 +50,7 @@ export default function Hero({ data }: { data: any }) {
               {data.quote}
             </p>
             
-            <div className="flex flex-col sm:flex-row items-center gap-6">
+            <div className="flex flex-col sm:flex-row items-start gap-6">
               <a 
                 href="#contact"
                 className="w-full sm:w-auto flex items-center justify-center space-x-2 bg-teal-500 text-[#0a0f1d] px-8 py-4 min-h-[56px] rounded-xl font-bold hover:bg-teal-400 focus:ring-4 focus:ring-teal-500 transition-all shadow-xl shadow-teal-900/20 group"

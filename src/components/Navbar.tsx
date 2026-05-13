@@ -6,10 +6,15 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [showContactBtn, setShowContactBtn] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [height, setHeight] = useState(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   useEffect(() => {
     let requestRunning = false;
+
+    const updateHeight = () => {
+      const h = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      setHeight(h);
+    };
 
     const handleScroll = () => {
       if (!requestRunning) {
@@ -18,17 +23,20 @@ export default function Navbar() {
           const scrollY = window.scrollY;
           setIsScrolled(scrollY > 50);
           setShowContactBtn(scrollY > 600);
-
-          const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
           setProgress((scrollY / height) * 100);
           requestRunning = false;
         });
       }
     };
 
+    updateHeight();
+    window.addEventListener('resize', updateHeight);
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    return () => {
+      window.removeEventListener('resize', updateHeight);
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [height]);
 
   // Close menu on Escape key
   useEffect(() => {
@@ -81,16 +89,16 @@ export default function Navbar() {
           <a href="#hero" className="flex items-center space-x-3 group relative z-[70]">
             <img
               src="/assets/logo.webp"
-              alt="Fabien Thiesset - Lead Developer & Architecte Santé"
+              alt="Fabien Thiesset | Manager Projet Technique & Lead Développeur & Architecte Santé"
               className="h-10 w-10 object-contain brightness-125 contrast-125 group-hover:scale-110 transition-transform"
             />
-            <span className="text-xl font-display font-bold tracking-tighter text-slate-100 group-hover:text-teal-400 transition-colors hidden lg:inline">
+            <span className="text-xl font-display font-bold tracking-tighter text-slate-100 group-hover:!text-teal-400 transition-colors hidden sm:inline">
               Fabien <span className="text-teal-400">Thiesset</span>
             </span>
           </a>
 
           {/* Desktop Nav */}
-          <div className="hidden lg:flex items-center space-x-6 xl:space-x-10">
+          <div className="hidden sm:flex items-center space-x-6 xl:space-x-10">
             {navLinks.map((item) => (
               <a
                 key={item.name}
@@ -104,7 +112,7 @@ export default function Navbar() {
 
           {/* Desktop CTA */}
           <div className={cn(
-            "hidden lg:block transition-all duration-500",
+            "hidden sm:block transition-all duration-500",
             showContactBtn ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10 pointer-events-none"
           )}>
             <a
@@ -116,8 +124,8 @@ export default function Navbar() {
             </a>
           </div>
 
-          {/* Mobile/Tablet: CTA + Burger side-by-side */}
-          <div className="flex lg:hidden items-center gap-2">
+          {/* Mobile/Tablet: CTA + Burger side-by-side — HIDDEN ON DESKTOP (>640px) */}
+          <div className="sm:hidden flex items-center gap-2 burger-desktop-hide">
             {/* Mobile CTA — visible when scrolled past hero */}
             <a
               href="#contact"
@@ -130,7 +138,7 @@ export default function Navbar() {
               Me Contacter
             </a>
 
-            {/* Burger toggle — always shows Menu icon; panel X handles closing */}
+            {/* Burger toggle */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="relative z-[70] p-3 min-w-[44px] min-h-[44px] flex items-center justify-center text-slate-100 hover:text-teal-400 transition-colors"
@@ -151,7 +159,7 @@ export default function Navbar() {
         aria-modal="true"
         aria-label="Menu de navigation"
         className={cn(
-          "lg:hidden fixed inset-0 z-[65] transition-all duration-500 ease-in-out",
+          "sm:hidden fixed inset-0 z-[65] transition-all duration-500 ease-in-out",
           isMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         )}
       >
