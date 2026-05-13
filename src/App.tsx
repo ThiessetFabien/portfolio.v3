@@ -4,12 +4,12 @@ import Hero from './components/Hero';
 import Story from './components/Story';
 import { Suspense, lazy } from 'react';
 
-import Experience from './components/Experience';
-import SkillsSection from './components/SkillsSection';
-import Projects from './components/Projects';
-import Testimonials from './components/Testimonials';
-import Contact from './components/Contact';
-import Footer from './components/Footer';
+const Experience = lazy(() => import('./components/Experience'));
+const SkillsSection = lazy(() => import('./components/SkillsSection'));
+const Projects = lazy(() => import('./components/Projects'));
+const Testimonials = lazy(() => import('./components/Testimonials'));
+const Contact = lazy(() => import('./components/Contact'));
+const Footer = lazy(() => import('./components/Footer'));
 
 export default function App() {
   const [data, setData] = useState<any>(null);
@@ -78,13 +78,17 @@ export default function App() {
       <main id="main-content">
         <Hero data={data.hero} />
         <Story data={data.story} />
-        <Experience data={data.experience} />
-        <SkillsSection data={data.skills} />
-        <Projects data={data.projects} />
-        <Testimonials data={data.testimonials} />
-        <Contact mobilityData={data.mobility} />
+        <Suspense fallback={null}>
+          <Experience data={data.experience} />
+          <SkillsSection data={data.skills} />
+          <Projects data={data.projects} />
+          <Testimonials data={data.testimonials} />
+          <Contact mobilityData={data.mobility} />
+        </Suspense>
       </main>
-      <Footer />
+      <Suspense fallback={null}>
+        <Footer />
+      </Suspense>
     </div>
   );
 }
