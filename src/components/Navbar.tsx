@@ -133,7 +133,7 @@ export default function Navbar() {
             {/* Burger toggle — always shows Menu icon; panel X handles closing */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="relative z-[70] p-2 text-slate-100 hover:text-teal-400 transition-colors"
+              className="relative z-[70] p-3 min-w-[44px] min-h-[44px] flex items-center justify-center text-slate-100 hover:text-teal-400 transition-colors"
               aria-label="Ouvrir le menu"
               aria-expanded={isMenuOpen}
               aria-controls="mobile-menu"

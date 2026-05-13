@@ -176,7 +176,8 @@ export default function Projects({ data }: { data: any }) {
                                 href={link.url} 
                                 target="_blank" 
                                 rel="noopener noreferrer"
-                                className="text-[10px] font-bold text-teal-400 hover:text-white transition-colors flex items-center gap-1.5 underline decoration-teal-400/30 underline-offset-4"
+                                className="text-[10px] font-bold text-teal-400 hover:text-white transition-colors flex items-center gap-1.5 underline decoration-teal-400/30 underline-offset-4 min-h-[32px] px-1"
+                                aria-label={`${link.name} du projet ${p.title} (nouvel onglet)`}
                                 onClick={(e) => e.stopPropagation()}
                               >
                                 {link.name === 'Frontend' || link.name === 'Backend' ? <Github className="w-3 h-3" /> : <Globe className="w-3 h-3" />}
