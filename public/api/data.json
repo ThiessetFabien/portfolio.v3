@@ -114,12 +114,12 @@
     },
     {
       "title": "Data & Intelligence Artificielle",
-      "skills": ["Python (Pandas, Automatisation)", "Ollama / Llama 3 (IA Locale)", "Analyse de Données", "BI & Data Visualization"],
+      "skills": ["Python (Pandas, Automatisation)", "IA Locale", "Analyse de Données", "BI & Data Visualization"],
       "iconType": "database"
     },
     {
       "title": "Culture Médicale & Éthique",
-      "skills": ["Accompagnement Clinique (17 ans)", "Référent Qualité / HAS", "Communication Alternative", "Conception Centrée Utilisateur"],
+      "skills": ["Accompagnement Clinique", "Référent Qualité / HAS", "Communication Alternative", "Conception Centrée Utilisateur"],
       "iconType": "brain"
     },
     {
