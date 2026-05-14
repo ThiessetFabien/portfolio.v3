@@ -54,6 +54,8 @@ module.exports = async (req, res) => {
     const smtpPass = (process.env.SMTP_PASS || '').replace(/"/g, '').trim();
     const smtpPort = parseInt((process.env.SMTP_PORT || '465').replace(/"/g, '').trim());
 
+    console.log(`Debug SMTP: Host=${smtpHost}, User=${smtpUser}, Port=${smtpPort}, PassLength=${smtpPass.length}`);
+
     const transporter = nodemailer.createTransport({
       host:   smtpHost,
       port:   smtpPort,
