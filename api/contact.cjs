@@ -49,24 +49,29 @@ module.exports = async (req, res) => {
   console.log(`Tentative d'envoi via SMTP: ${process.env.SMTP_USER.substring(0, 3)}...`);
 
   try {
+    const smtpHost = (process.env.SMTP_HOST || 'smtp.alwaysdata.com').replace(/"/g, '').trim();
+    const smtpUser = (process.env.SMTP_USER || '').replace(/"/g, '').trim();
+    const smtpPass = (process.env.SMTP_PASS || '').replace(/"/g, '').trim();
+    const smtpPort = parseInt((process.env.SMTP_PORT || '465').replace(/"/g, '').trim());
+
     const transporter = nodemailer.createTransport({
-      host:   process.env.SMTP_HOST || 'smtp.alwaysdata.com',
-      port:   587,
-      secure: false,
+      host:   smtpHost,
+      port:   smtpPort,
+      secure: process.env.SMTP_SECURE === 'true' || smtpPort === 465,
       auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS,
+        user: smtpUser,
+        pass: smtpPass,
       },
       tls: {
-        // Tolère les certificats auto-signés sur Alwaysdata
         rejectUnauthorized: false,
       },
     });
 
-    const recipient = process.env.CONTACT_EMAIL || process.env.SMTP_USER;
+    const contactEmail = (process.env.CONTACT_EMAIL || smtpUser).replace(/"/g, '').trim();
+    const recipient = contactEmail;
 
     const mailOptions = {
-      from:    `"Portfolio Contact" <${process.env.SMTP_USER}>`,
+      from:    `"Portfolio Contact" <${smtpUser}>`,
       to:      recipient,
       replyTo: email,
       subject: `[Portfolio] Message de ${name}`,
