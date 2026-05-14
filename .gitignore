@@ -1,6 +1,6 @@
 node_modules/
 build/
-# dist/
+dist/
 coverage/
 .DS_Store
 *.log
@@ -9,3 +9,4 @@ coverage/
 *.zip
 scratch/
 scratch.cjs
+deploy_pack.zip
