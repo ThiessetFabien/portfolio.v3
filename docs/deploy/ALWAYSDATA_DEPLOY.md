@@ -2,52 +2,54 @@
 
 Ce projet a été configuré pour fonctionner de manière autonome sur **Alwaysdata** grâce à un serveur Node.js unifié (`server.cjs`). Ce script sert à la fois les fichiers de ton portfolio (le design) et gère ton API d'envoi d'emails.
 
-## Étape 1 : Préparation locale
+Le workflow actuel utilise une approche **"Zero-Install"** : tout est packagé en local (y compris `node_modules` et `.env`), ce qui évite de devoir exécuter `npm install` ou configurer des choses sur le serveur distant.
 
-1. Assure-toi que les dernières modifications sont commitées et poussées sur GitHub.
-2. Le projet doit être buildé au moins une fois pour générer le dossier `dist/` :
+## Étape 1 : Préparation locale & Packaging
+
+1. Vérifie que ton fichier `.env` local contient bien tes identifiants SMTP.
+   > [!WARNING]
+   > Pour Alwaysdata, `SMTP_USER` doit être une adresse email complète (ex: `fabienthiesset@alwaysdata.net`), et non ton nom d'utilisateur SSH.
+2. Génère le build et le pack de déploiement :
    ```bash
-   npm run build
+   npm run deploy
    ```
+   *Ce script compile le projet (Vite), rassemble le serveur Node.js, l'API, les dépendances et le fichier `.env` dans un fichier `deploy_pack.zip`.*
 
-## Étape 2 : Création de l'application sur Alwaysdata
+## Étape 2 : Configuration sur Alwaysdata (À faire une seule fois)
 
 1. Connecte-toi à ton interface d'administration Alwaysdata.
-2. Dans le menu de gauche, va dans **Web** -> **Sites**.
-3. Clique sur **Ajouter un site**.
-4. Configure le site ainsi :
-   - **Adresses** : `fabien-thiesset.fr` (ou ton adresse `.alwaysdata.net` temporaire).
+2. Dans **Web** -> **Sites**, clique sur **Ajouter un site**.
+3. Configure le site ainsi :
+   - **Adresses** : `fabien-thiesset.fr` (ou ton adresse `.alwaysdata.net`).
    - **Type** : `Node.js`.
-   - **Chemin de l'application** : `/www/portfolio` (ou le dossier où tu vas cloner ton projet).
+   - **Chemin de l'application** : `/www/portfolio`
    - **Commande de démarrage** : `node server.cjs`
    - **Version de Node.js** : La version recommandée la plus récente (ex: 20.x ou 22.x).
-5. Dans la section **Environnement**, ajoute les 4 variables nécessaires pour ton formulaire de contact :
-   - `SMTP_HOST` : `smtp.alwaysdata.com`
-   - `SMTP_USER` : `ton_adresse@alwaysdata.net` (celle que tu as créée pour envoyer les mails)
-   - `SMTP_PASS` : `TonMotDePasseSMTP`
-   - `CONTACT_EMAIL` : `thiessetfabienpro@gmail.com`
 
-## Étape 3 : Déploiement du code (via SSH)
+> [!CAUTION]
+> **Important concernant l'environnement :** Ne définis **AUCUNE** variable SMTP (`SMTP_HOST`, `SMTP_USER`, etc.) dans l'onglet **Environnement** du dashboard Alwaysdata. Laisse cette section vide. 
+> Le serveur lira automatiquement ton fichier `.env` inclus dans le ZIP. Si tu ajoutes des variables dans le dashboard, elles risquent de créer des conflits d'injection (présence de guillemets littéraux) provoquant l'erreur `535 Incorrect authentication data`.
 
-1. Connecte-toi en SSH à ton serveur Alwaysdata (les identifiants sont dans la rubrique **Accès distant** -> **SSH**).
-2. Clone ton dépôt dans le dossier défini à l'étape 2 (ex: `/www/portfolio`) :
+## Étape 3 : Envoi et Déploiement
+
+1. Envoie ton fichier `deploy_pack.zip` sur ton espace Alwaysdata (via SCP, FTP, ou SSH). Par exemple :
    ```bash
-   cd www
-   git clone git@github.com:ThiessetFabien/portfolio.v3.git portfolio
-   cd portfolio
+   scp deploy_pack.zip fabienthiesset@ssh-fabienthiesset.alwaysdata.net:/home/fabienthiesset/www/portfolio/
    ```
-3. Installe les dépendances :
+2. Connecte-toi en SSH, va dans le dossier et extrais l'archive :
    ```bash
-   npm install --production
+   cd /home/fabienthiesset/www/portfolio
+   unzip -o deploy_pack.zip
    ```
-4. Lance le build :
-   ```bash
-   npm run build
-   ```
+   *(L'option `-o` écrase les anciens fichiers, y compris le `.env`)*
 
 ## Étape 4 : Redémarrage
 
 1. Retourne sur l'interface d'administration Alwaysdata.
-2. Dans **Web** -> **Sites**, clique sur l'icône **Redémarrer** à côté de ton site Node.js.
+2. Dans **Web** -> **Sites**, clique sur l'icône **Redémarrer** (🔄) à côté de ton site Node.js.
 
-🎉 **C'est fini !** Ton portfolio est maintenant en ligne, souverain et ton formulaire de contact est fonctionnel.
+### 🐛 Dépannage (Troubleshooting)
+- **Erreur SMTP 535 Invalid Login** : Vérifie que le mot de passe est celui du *compte email* (rubrique Emails d'Alwaysdata) et non du panneau d'administration.
+- **Port SMTP** : Par défaut, le serveur utilise le port `465` (SSL). Si besoin, tu peux redéfinir `SMTP_PORT=587` et `SMTP_SECURE=false` dans ton `.env`.
+
+🎉 **C'est fini !** Ton portfolio est en ligne et ultra-performant.
