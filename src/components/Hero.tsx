@@ -31,11 +31,33 @@ export default function Hero({ data }: { data: any }) {
       
       <div className="section-padding relative z-10 w-full">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
-          
           <div className="reveal flex flex-col items-start text-left">
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/5 rounded-full mb-6 border border-white/10">
-              <span className="w-2 h-2 bg-teal-400 rounded-full animate-pulse" />
-              <span className="text-[10px] font-bold uppercase tracking-widest text-slate-200">{data.subtitle}</span>
+            <div className="inline-flex flex-wrap items-center gap-1.5 sm:gap-2 px-3 py-1.5 bg-white/5 rounded-2xl sm:rounded-full mb-6 border border-white/10 max-w-full">
+              <span className="w-2 h-2 bg-teal-400 rounded-full animate-pulse flex-shrink-0" aria-hidden="true" />
+              <div className="flex flex-wrap items-center gap-1 sm:gap-2 text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-slate-200">
+                {data.subtitle.split('|').map((part: string, idx: number) => {
+                  const cleaned = part.trim();
+                  if (idx === 1) {
+                    return (
+                      <React.Fragment key={idx}>
+                        <span className="opacity-30 text-white/30">|</span>
+                        <span>{cleaned}</span>
+                      </React.Fragment>
+                    );
+                  }
+                  if (idx === 2) {
+                    return (
+                      <React.Fragment key={idx}>
+                        <span className="opacity-30 text-white/30">|</span>
+                        <span>
+                          <span className="hidden sm:inline">Candidat </span>VAP 7<span className="hidden sm:inline"> (Niveau 7)</span>
+                        </span>
+                      </React.Fragment>
+                    );
+                  }
+                  return <span key={idx}>{cleaned}</span>;
+                })}
+              </div>
             </div>
             
             <h1 className="heading-primary text-3xl sm:text-5xl md:text-8xl mb-8 leading-[0.9] tracking-tighter">

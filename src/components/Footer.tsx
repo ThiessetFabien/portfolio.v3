@@ -45,7 +45,7 @@ export default function Footer() {
               <Mail className="w-5 h-5" aria-hidden="true" />
             </a>
             <a 
-              href="https://wa.me/33644026362" 
+              href="https://wa.me/33610920974" 
               target="_blank" 
               rel="noopener noreferrer"
               aria-label="WhatsApp (nouvel onglet)"
