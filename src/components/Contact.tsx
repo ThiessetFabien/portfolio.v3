@@ -139,17 +139,17 @@ export default function Contact({ mobilityData }: { mobilityData: any }) {
                   
                   {/* Honeypot anti-spam */}
                   <p className="hidden" aria-hidden="true">
-                    <label>Ne pas remplir : <input name="bot-field" tabIndex={-1} /></label>
+                    <label>Ne pas remplir : <input name="bot-field" tabIndex={-1} autoComplete="off" /></label>
                   </p>
                   
                   <div className="grid md:grid-cols-2 gap-8 mb-8">
                     <div className="space-y-2">
                       <label htmlFor="name" className="block text-xs font-black text-slate-400 uppercase tracking-[0.2em] ml-1">Nom Complet</label>
-                      <input required type="text" id="name" name="name" className="w-full bg-white/[0.03] border border-white/5 rounded-2xl px-5 py-4 text-slate-100 focus:outline-none focus:border-teal-400/50 focus:bg-white/[0.06] focus:ring-1 focus:ring-teal-400/30 transition-all placeholder-slate-600 font-medium" placeholder="Ex: Jean Dupont" />
+                      <input required type="text" id="name" name="name" autoComplete="name" className="w-full bg-white/[0.03] border border-white/5 rounded-2xl px-5 py-4 text-slate-100 focus:outline-none focus:border-teal-400/50 focus:bg-white/[0.06] focus:ring-1 focus:ring-teal-400/30 transition-all placeholder-slate-600 font-medium" placeholder="Ex: Jean Dupont" />
                     </div>
                     <div className="space-y-2">
                       <label htmlFor="email" className="block text-xs font-black text-slate-400 uppercase tracking-[0.2em] ml-1">Email Professionnel</label>
-                      <input required type="email" id="email" name="email" className="w-full bg-white/[0.03] border border-white/5 rounded-2xl px-5 py-4 text-slate-100 focus:outline-none focus:border-teal-400/50 focus:bg-white/[0.06] focus:ring-1 focus:ring-teal-400/30 transition-all placeholder-slate-600 font-medium" placeholder="jean@entreprise.com" />
+                      <input required type="email" id="email" name="email" autoComplete="email" className="w-full bg-white/[0.03] border border-white/5 rounded-2xl px-5 py-4 text-slate-100 focus:outline-none focus:border-teal-400/50 focus:bg-white/[0.06] focus:ring-1 focus:ring-teal-400/30 transition-all placeholder-slate-600 font-medium" placeholder="jean@entreprise.com" />
                     </div>
                   </div>
                   <div className="mb-8 space-y-2">

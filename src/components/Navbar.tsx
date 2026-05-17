@@ -89,7 +89,7 @@ export default function Navbar() {
               alt="Fabien Thiesset | Manager Projet Technique & Lead Développeur & Architecte Santé"
               className="h-10 w-10 object-contain brightness-125 contrast-125 group-hover:scale-110 transition-transform"
             />
-            <span className="text-xl font-display font-bold tracking-tighter text-slate-100 group-hover:!text-teal-400 transition-colors hidden sm:inline">
+            <span className="text-xl font-display font-bold tracking-tighter text-slate-100 group-hover:!text-teal-400 transition-colors hidden lg:inline">
               Fabien <span className="text-teal-400">Thiesset</span>
             </span>
           </a>
@@ -100,11 +100,20 @@ export default function Navbar() {
               <a
                 key={item.name}
                 href={item.href}
-                className="text-[11px] font-bold uppercase tracking-widest text-slate-300 hover:text-teal-400 transition-colors px-2 py-1"
+                className="text-[11px] font-bold uppercase tracking-widest text-slate-300 hover:text-teal-400 transition-colors px-2 py-1 whitespace-nowrap"
               >
                 {item.name}
               </a>
             ))}
+            <a
+              href="/docs/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[11px] font-black uppercase tracking-widest text-teal-400 hover:text-teal-300 hover:bg-teal-500/10 transition-all px-3 py-1.5 rounded-full whitespace-nowrap"
+              aria-label="Consulter mon CV en format PDF (nouvel onglet)"
+            >
+              CV <span className="hidden lg:inline">(PDF)</span>
+            </a>
           </div>
 
           {/* Desktop CTA */}
@@ -115,7 +124,7 @@ export default function Navbar() {
             <a
               href="#contact"
               aria-label="Aller à la section contact"
-              className="bg-teal-500/10 border border-teal-500/30 text-teal-400 px-6 py-2 min-h-[44px] flex items-center rounded-full text-xs font-bold uppercase tracking-widest hover:bg-teal-500/20 transition-all shadow-lg"
+              className="bg-teal-500/10 border border-teal-500/30 text-teal-400 px-6 py-2 min-h-[44px] flex items-center justify-center rounded-full text-xs font-bold uppercase tracking-widest hover:bg-teal-500/20 transition-all shadow-lg whitespace-nowrap"
             >
               Me Contacter
             </a>
@@ -198,6 +207,18 @@ export default function Navbar() {
                 <ChevronRight className="w-5 h-5 text-teal-400/40 group-hover:text-teal-400 group-hover:translate-x-1 transition-all" />
               </a>
             ))}
+            <a
+              href="/docs/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={closeMenu}
+              className="group flex items-center justify-between px-4 py-4 rounded-2xl text-xl font-bold text-teal-400 hover:bg-teal-400/5 transition-all duration-200"
+              style={{ transitionDelay: isMenuOpen ? `${navLinks.length * 50}ms` : '0ms' }}
+              aria-label="Consulter mon CV en format PDF (nouvel onglet)"
+            >
+              <span>Consulter mon CV</span>
+              <ChevronRight className="w-5 h-5 text-teal-400/40 group-hover:text-teal-400 group-hover:translate-x-1 transition-all" />
+            </a>
           </nav>
 
           {/* CTA */}

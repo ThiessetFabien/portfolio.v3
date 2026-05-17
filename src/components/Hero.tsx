@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ArrowRight, Linkedin, Mail, ChevronDown, HeartPulse, BrainCircuit, MessageCircle } from 'lucide-react';
+import { ArrowRight, Linkedin, Mail, ChevronDown, HeartPulse, BrainCircuit, MessageCircle, FileText } from 'lucide-react';
 
 export default function Hero({ data }: { data: any }) {
   const [years, setYears] = useState(0);
@@ -50,7 +50,7 @@ export default function Hero({ data }: { data: any }) {
               {data.quote}
             </p>
             
-            <div className="flex flex-col sm:flex-row items-start gap-6">
+            <div className="flex flex-col sm:flex-row items-center gap-6 w-full sm:w-auto">
               <a 
                 href="#contact"
                 className="w-full sm:w-auto flex items-center justify-center space-x-2 bg-teal-500 text-[#0a0f1d] px-8 py-4 min-h-[56px] rounded-xl font-bold hover:bg-teal-400 focus:ring-4 focus:ring-teal-500 transition-all shadow-xl shadow-teal-900/20 group"
@@ -60,6 +60,21 @@ export default function Hero({ data }: { data: any }) {
               </a>
               
               <div className="flex items-center space-x-4">
+                <a 
+                  href="/docs/resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-12 h-12 flex items-center justify-center bg-teal-500/10 border border-teal-500/30 text-teal-400 hover:text-teal-300 hover:bg-teal-500/20 hover:border-teal-500/50 transition-all rounded-xl relative group focus:ring-4 focus:ring-teal-500/30"
+                  aria-label="Consulter mon CV de Fabien Thiesset au format PDF (nouvel onglet)"
+                >
+                  <FileText className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                  <span className="absolute -top-12 left-1/2 -translate-x-1/2 bg-[#0d1628]/95 backdrop-blur-sm border border-teal-500/20 text-teal-400 text-[10px] font-black uppercase tracking-widest px-2.5 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-200 whitespace-nowrap pointer-events-none shadow-xl shadow-black/50 translate-y-1 group-hover:translate-y-0 z-20">
+                    Mon CV (PDF)
+                  </span>
+                </a>
+
+                <div className="h-8 w-[1px] bg-white/10" aria-hidden="true" />
+
                 <a href={data.contact.linkedin} target="_blank" rel="noopener noreferrer" className="w-12 h-12 flex items-center justify-center bg-white/5 rounded-xl text-slate-200 hover:text-teal-400 hover:bg-white/10 transition-all border border-white/5" aria-label="LinkedIn (nouvel onglet)">
                   <Linkedin className="w-5 h-5" />
                 </a>
@@ -96,7 +111,7 @@ export default function Hero({ data }: { data: any }) {
                     src="/assets/hero.webp" 
                     alt="Portrait de Fabien Thiesset, Expert MedTech & Data" 
                     className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100"
-                    fetchpriority="high"
+                    fetchPriority="high"
                     decoding="sync"
                     loading="eager"
                   />
