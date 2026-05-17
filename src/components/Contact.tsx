@@ -65,7 +65,7 @@ export default function Contact({ mobilityData }: { mobilityData: any }) {
                 <div className="p-6 bg-[#0a0f1d]/50 rounded-2xl border border-white/5 hover:border-teal-400/30 transition-colors group">
                   <HeartPulse className="w-6 h-6 text-teal-400 mb-4 group-hover:scale-110 transition-transform" aria-hidden="true" />
                   <h3 className="font-bold text-slate-100 text-sm mb-2">Culture Médicale</h3>
-                  <p className="text-slate-400 text-[11px] leading-relaxed italic">20 ans d'immersion clinique pour des solutions qui ont du sens.</p>
+                  <p className="text-slate-400 text-[11px] leading-relaxed italic">21 ans d'immersion clinique pour des solutions qui ont du sens.</p>
                 </div>
                 <div className="p-6 bg-[#0a0f1d]/50 rounded-2xl border border-white/5 hover:border-teal-400/30 transition-colors group">
                   <BrainCircuit className="w-6 h-6 text-teal-400 mb-4 group-hover:scale-110 transition-transform" aria-hidden="true" />

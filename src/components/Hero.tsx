@@ -6,7 +6,7 @@ export default function Hero({ data }: { data: any }) {
 
   useEffect(() => {
     let start = 0;
-    const end = 20;
+    const end = 21;
     const duration = 2000;
     const increment = end / (duration / 16);
     
@@ -55,8 +55,8 @@ export default function Hero({ data }: { data: any }) {
                   if (idx === 2) {
                     return (
                       <React.Fragment key={idx}>
-                        <span className="opacity-30 text-white/30 flex-shrink-0">|</span>
-                        <span className="flex-shrink-0">
+                        <span className="opacity-30 text-white/30 flex-shrink-0 hidden sm:inline">|</span>
+                        <span className="flex-shrink-0 hidden sm:inline">
                           <span className="hidden sm:inline">Candidat </span>VAP 7<span className="hidden md:inline"> (Niveau 7)</span>
                         </span>
                       </React.Fragment>
