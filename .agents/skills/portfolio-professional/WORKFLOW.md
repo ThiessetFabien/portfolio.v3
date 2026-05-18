@@ -15,6 +15,7 @@ This workflow defines the standard for a world-class portfolio, integrating stra
 
 ### 2. Design & Experience (UX/UI Designer)
 **Goal**: Visual impact and seamless usability.
+- **Qualitative Audit (ui-ux-pro-max)**: Enforce premium aesthetics, bento grids, and glassmorphism standards.
 - **Responsive-First**: Design using Bento grids and fluid containers.
 - **Glassmorphism**: Use premium transparency, blurs, and border glows.
 - **Micro-Interactions**: Define hover states, scroll reveals, and smooth transitions.
@@ -22,6 +23,7 @@ This workflow defines the standard for a world-class portfolio, integrating stra
 
 ### 3. High-End Engineering (Senior React/IA Dev)
 **Goal**: Build the technical core.
+- **Architecture Audit (improve-codebase-architecture)**: Identify refactoring opportunities and enforce clean component decoupling.
 - **React Architecture**: Atomic components, clean hooks, and performance optimization.
 - **IA Integration**: Integrate LLMs, RAG, or AI-powered automations.
 - **Modern CSS**: Vanilla CSS with custom properties (HSL tokens).
@@ -39,6 +41,8 @@ This workflow defines the standard for a world-class portfolio, integrating stra
 
 ### 5. Quality & Industrialization (Q/A Tester)
 **Goal**: Zero-friction and accessibility.
+- **Quantitative Audit (vercel-react-best-practices)**: Analyze bundle size, rendering performance, and data-fetching.
+- **Quantitative A11y (accessibility-auditor)**: Run axe-core tests to ensure zero critical violations.
 - **Responsive Audit**: Test on Mobile (375px), Tablet (768px), and Desktop (1440px+).
 - **Accessibility (A11y)**:
     - WCAG Compliance (Contrast, Aria-labels).
@@ -168,10 +172,10 @@ Before any deployment, each role must perform a "Quality & Meaning" check to ens
 ## 🛠️ Execution Checklist
 
 - [ ] Does this project have a **BMAD** case study?
-- [ ] Is the design **Responsive** and visually **Premium**?
-- [ ] Does it demonstrate **AI/React** senior expertise?
+- [ ] Is the design **Responsive** and visually **Premium**? (Audited with `ui-ux-pro-max`)
+- [ ] Does it demonstrate **AI/React** senior expertise? (Audited with `improve-codebase-architecture`)
 - [ ] Is there a clear **Conversion Tunnel** (meaningful journey) for the visitor?
 - [ ] **Security**: Are all inputs strictly type-checked and escaped? No `TypeError` risks in validators?
-- [ ] **Lighthouse**: Does the page achieve 90+ on Perf/A11y/SEO? (Check `fetchpriority`, `width/height`, `aria-labels`).
+- [ ] **Lighthouse**: Does the page achieve 90+ on Perf/A11y/SEO? (Audited with `vercel-react-best-practices` & `accessibility-auditor`).
 - [ ] **Responsive Anti-Regression**: Have all rules in the "Responsive Engineering Standards" section been applied?
 - [ ] **CONCILIATION**: Have all 5 roles approved the "Soul" of the change? (No loss of human-centricity).
