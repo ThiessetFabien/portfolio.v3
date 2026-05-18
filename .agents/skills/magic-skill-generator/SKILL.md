@@ -1,3 +1,8 @@
+---
+name: magic-skill-generator
+description: Generate and structure new agent skills using the BMAD framework and the Funny Team ensemble personas. Use this skill whenever the user asks to "build a skill", brainstorm a new agent capability, or use "Magic Skill".
+---
+
 # Magic Skill Generator ✨
 
 A meta-skill for creating BMad-compliant skills with a professional and humorous touch.

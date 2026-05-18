@@ -1,3 +1,8 @@
+---
+name: portfolio-professional
+description: Audit and build portfolio projects to professional standards using the Pro-Flow workflow. Use this skill whenever the user mentions portfolio updates, `/pro-audit`, `/pro-bmad`, `/pro-reconcile`, or `/pro-responsive`, or asks for a portfolio review.
+---
+
 # Portfolio Professional Skill 🌟
 
 A specialized toolset to ensure your portfolio is professional, qualitative, and impactful, reflecting five core pillars of expertise through an integrated **Antigravity Ensemble**.
@@ -28,7 +33,7 @@ Use these commands directly in the Antigravity prompt to trigger the Pro-Flow:
 
 ## 📐 Pro-Flow Workflow
 A systematic approach to building and auditing portfolio projects.
-- **File**: [WORKFLOW.md](file:///home/fabien/Projets/Portfolio3.0/skills/portfolio-professional/WORKFLOW.md)
+- **File**: [WORKFLOW.md](./WORKFLOW.md)
 
 ### 📝 BMAD Case Study Generator
 Transform any repository or project into a professional case study.

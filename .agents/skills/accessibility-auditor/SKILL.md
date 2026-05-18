@@ -1,3 +1,8 @@
+---
+name: accessibility-auditor
+description: Audit web applications for WCAG AAA and RGAA accessibility standards. Use this skill whenever the user asks to check accessibility, audit for a11y, improve contrast, check semantic HTML, or run axe-core tests to ensure digital inclusion.
+---
+
 # Accessibility Auditor (A11y) 🛡️
 
 A specialized skill designed to enforce digital inclusion, ensuring that our applications meet WCAG AAA and RGAA standards. Because true innovation is accessible to everyone.

@@ -1,3 +1,8 @@
+---
+name: bmad-framework
+description: Guide the user through the BMAD (Besoin, Méthode, Action, Données) methodology to structure projects. Trigger this skill whenever the user wants to brainstorm a new project, feature, or workflow, or mentions BMAD, project planning, or structured implementation.
+---
+
 # BMAD Framework Skill 🏗️
 
 The core implementation of the BMAD (Besoin, Méthode, Action, Données) methodology.
