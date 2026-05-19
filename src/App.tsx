@@ -111,7 +111,7 @@ export default function App() {
         </Suspense>
       </main>
       <Suspense fallback={null}>
-        <Footer />
+        <Footer contact={data.hero.contact} />
       </Suspense>
     </div>
   );

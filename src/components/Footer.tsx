@@ -1,7 +1,23 @@
 import React from 'react';
 import { Linkedin, Github, Mail, MessageCircle } from 'lucide-react';
 
-export default function Footer() {
+interface FooterProps {
+  contact?: {
+    email: string;
+    linkedin: string;
+    github: string;
+    whatsapp: string;
+    discord: string;
+  };
+}
+
+export default function Footer({ contact }: FooterProps) {
+  const email = contact?.email || "thiessetfabienpro@gmail.com";
+  const linkedin = contact?.linkedin || "https://www.linkedin.com/in/fabien-thiesset";
+  const github = contact?.github || "https://github.com/ThiessetFabien";
+  const whatsapp = contact?.whatsapp || "https://wa.me/33610920974";
+  const discord = contact?.discord || "https://discord.com/users/vij157164";
+
   return (
     <footer className="bg-[#03050c] text-slate-200 py-16 px-6 border-t border-white/5">
       <div className="max-w-7xl mx-auto">
@@ -20,7 +36,7 @@ export default function Footer() {
 
           <div className="flex space-x-4">
             <a 
-              href="https://www.linkedin.com/in/fabien-thiesset" 
+              href={linkedin} 
               target="_blank" 
               rel="noopener noreferrer"
               aria-label="Profil LinkedIn (nouvel onglet)"
@@ -29,7 +45,7 @@ export default function Footer() {
               <Linkedin className="w-5 h-5" aria-hidden="true" />
             </a>
             <a 
-              href="https://github.com/ThiessetFabien" 
+              href={github} 
               target="_blank" 
               rel="noopener noreferrer"
               aria-label="Profil GitHub (nouvel onglet)"
@@ -38,14 +54,14 @@ export default function Footer() {
               <Github className="w-5 h-5" aria-hidden="true" />
             </a>
             <a 
-              href="mailto:thiessetfabienpro@gmail.com" 
+              href={`mailto:${email}`} 
               aria-label="Envoyer un email"
               className="p-4 bg-white/5 min-h-[44px] min-w-[44px] flex items-center justify-center rounded-xl hover:bg-white/10 hover:text-teal-400 transition-all focus-visible:ring-2 focus-visible:ring-teal-400 focus-visible:outline-none"
             >
               <Mail className="w-5 h-5" aria-hidden="true" />
             </a>
             <a 
-              href="https://wa.me/33610920974" 
+              href={whatsapp} 
               target="_blank" 
               rel="noopener noreferrer"
               aria-label="WhatsApp (nouvel onglet)"
@@ -54,10 +70,10 @@ export default function Footer() {
               <MessageCircle className="w-5 h-5" aria-hidden="true" />
             </a>
             <a 
-              href="https://discord.gg/vij157164" 
+              href={discord} 
               target="_blank" 
               rel="noopener noreferrer"
-              aria-label="Discord (nouvel onglet)"
+              aria-label="Discord : vij157164 (nouvel onglet)"
               className="p-4 bg-white/5 min-h-[44px] min-w-[44px] flex items-center justify-center rounded-xl hover:bg-white/10 hover:text-teal-400 transition-all focus-visible:ring-2 focus-visible:ring-teal-400 focus-visible:outline-none"
             >
               <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
