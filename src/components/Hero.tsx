@@ -110,9 +110,6 @@ export default function Hero({ data }: { data: any }) {
                 <a href={data.contact.github} target="_blank" rel="noopener noreferrer" className="w-12 h-12 flex items-center justify-center bg-white/5 rounded-xl text-slate-200 hover:text-teal-400 hover:bg-white/10 transition-all border border-white/5" aria-label="GitHub (nouvel onglet)">
                   <Github className="w-5 h-5" />
                 </a>
-                <a href={`mailto:${data.contact.email}`} className="w-12 h-12 flex items-center justify-center bg-white/5 rounded-xl text-slate-200 hover:text-teal-400 hover:bg-white/10 transition-all border border-white/5" aria-label="Envoyer un Email">
-                  <Mail className="w-5 h-5" />
-                </a>
                 <a href={data.contact.whatsapp} target="_blank" rel="noopener noreferrer" className="w-12 h-12 flex items-center justify-center bg-white/5 rounded-xl text-slate-200 hover:text-teal-400 hover:bg-white/10 transition-all border border-white/5" aria-label="WhatsApp (nouvel onglet)">
                   <MessageCircle className="w-5 h-5" />
                 </a>

@@ -89,7 +89,7 @@ export default function App() {
   }
 
   return (
-    <div className="font-sans selection:bg-teal-900 selection:text-teal-100">
+    <div className="font-sans selection:bg-teal-900 selection:text-teal-100 overflow-x-hidden w-full relative">
       <header>
         <a 
           href="#main-content" 

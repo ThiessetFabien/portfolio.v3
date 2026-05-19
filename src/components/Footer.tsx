@@ -1,5 +1,5 @@
 import React from 'react';
-import { Linkedin, Github, Mail, MessageCircle } from 'lucide-react';
+import { Linkedin, Github, FileText, MessageCircle } from 'lucide-react';
 
 interface FooterProps {
   contact?: {
@@ -54,11 +54,12 @@ export default function Footer({ contact }: FooterProps) {
               <Github className="w-5 h-5" aria-hidden="true" />
             </a>
             <a 
-              href={`mailto:${email}`} 
-              aria-label="Envoyer un email"
+              href="/assets/cv.pdf" 
+              download="CV_Fabien_Thiesset.pdf"
+              aria-label="Télécharger le CV (PDF)"
               className="p-4 bg-white/5 min-h-[44px] min-w-[44px] flex items-center justify-center rounded-xl hover:bg-white/10 hover:text-teal-400 transition-all focus-visible:ring-2 focus-visible:ring-teal-400 focus-visible:outline-none"
             >
-              <Mail className="w-5 h-5" aria-hidden="true" />
+              <FileText className="w-5 h-5" aria-hidden="true" />
             </a>
             <a 
               href={whatsapp} 
