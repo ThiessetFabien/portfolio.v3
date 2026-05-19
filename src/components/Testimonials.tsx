@@ -4,10 +4,10 @@ export default function Testimonials({ data }: { data: any[] }) {
   if (!data) return null;
 
   return (
-    <section className="bg-[#0a0f1d] border-t border-white/5 overflow-hidden">
+    <section id="testimonials" role="region" aria-labelledby="testimonials-title" className="bg-[#0a0f1d] border-t border-white/5 overflow-hidden">
       <div className="section-padding">
         <div className="mb-16 text-center">
-          <h2 className="heading-primary text-3xl sm:text-4xl mb-4">
+          <h2 id="testimonials-title" className="heading-primary text-3xl sm:text-4xl mb-4">
             Confiance & <span className="text-teal-400 italic serif">Recommandations</span>.
           </h2>
           <p className="text-slate-200 max-w-2xl mx-auto italic font-medium">Ceux avec qui j'ai eu le plaisir de collaborer témoignent de mon engagement et de ma vision hybride.</p>

@@ -119,7 +119,7 @@ export default function Contact({ mobilityData }: { mobilityData: any }) {
             {/* Form Column */}
             <div className="reveal" style={{ transitionDelay: '200ms' }}>
               {status === 'success' ? (
-                <div className="bg-teal-500/10 p-12 rounded-3xl border border-teal-500/30 text-center backdrop-blur-xl">
+                <div aria-live="polite" className="bg-teal-500/10 p-12 rounded-3xl border border-teal-500/30 text-center backdrop-blur-xl">
                   <div className="w-20 h-20 bg-teal-500 text-[#0a0f1d] rounded-full flex items-center justify-center mx-auto mb-8 shadow-[0_0_40px_rgba(45,212,191,0.4)]">
                     <HeartPulse className="w-10 h-10" />
                   </div>
@@ -166,7 +166,7 @@ export default function Contact({ mobilityData }: { mobilityData: any }) {
                   </div>
                   
                   {status === 'error' && (
-                    <p className="text-red-400 text-xs mb-6 font-bold text-center">
+                    <p role="alert" aria-live="assertive" className="text-red-400 text-xs mb-6 font-bold text-center">
                       {errorMessage || "Une erreur est survenue lors de l'envoi. Veuillez réessayer."}
                     </p>
                   )}

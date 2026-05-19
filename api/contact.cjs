@@ -1,5 +1,27 @@
 const nodemailer = require('nodemailer');
 
+// Rate limiting en mémoire (Max 5 requêtes par heure par adresse IP)
+const rateLimits = {};
+const LIMIT_WINDOW = 3600 * 1000; // 1 heure en millisecondes
+const MAX_REQUESTS = 5;
+
+const rateLimiter = (ip) => {
+  const now = Date.now();
+  if (!rateLimits[ip]) {
+    rateLimits[ip] = [];
+  }
+  
+  // Nettoyer les requêtes de plus de 1h
+  rateLimits[ip] = rateLimits[ip].filter(timestamp => now - timestamp < LIMIT_WINDOW);
+  
+  if (rateLimits[ip].length >= MAX_REQUESTS) {
+    return false;
+  }
+  
+  rateLimits[ip].push(now);
+  return true;
+};
+
 /**
  * Handler pour Alwaysdata (Node.js)
  * Validation manuelle sans validator.normalizeEmail qui retourne `false` sur email invalide.
@@ -7,6 +29,14 @@ const nodemailer = require('nodemailer');
 module.exports = async (req, res) => {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Méthode non autorisée' });
+  }
+
+  const ip = (req.headers['x-forwarded-for'] || req.socket.remoteAddress || 'unknown-ip').split(',')[0].trim();
+
+  // 0. Rate Limiting en mémoire
+  if (!rateLimiter(ip)) {
+    console.warn(`[Rate Limit] Abus détecté depuis l'IP: ${ip}`);
+    return res.status(429).json({ error: 'Trop de requêtes. Veuillez réessayer dans une heure.' });
   }
 
   const body = req.body || {};

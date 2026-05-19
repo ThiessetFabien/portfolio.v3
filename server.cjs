@@ -11,6 +11,17 @@ const app = express();
 // Middleware pour parser le JSON des requêtes POST
 app.use(express.json());
 
+// Middleware pour injecter les en-têtes HTTP de sécurité standards (HSTS, X-Content-Type-Options, etc.)
+app.use((req, res, next) => {
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('X-Frame-Options', 'DENY');
+  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+  if (req.secure || req.headers['x-forwarded-proto'] === 'https') {
+    res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains');
+  }
+  next();
+});
+
 // 1. Définition de la route API pour le formulaire de contact
 app.post('/api/contact', contactHandler);
 

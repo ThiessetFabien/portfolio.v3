@@ -191,7 +191,7 @@
   background: rgba(45, 212, 191, 0.4);
 }
 /* Force hide burger on desktop (safety fallback for HiDPI/Scaling) */
-@media (min-width: 600px) {
+@media (min-width: 1024px) {
   .burger-desktop-hide {
     display: none !important;
   }

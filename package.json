@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite --port=3000 --host=0.0.0.0",
     "start": "node server.cjs",
-    "deploy": "./scripts/deploy-prepare.sh && scp deploy_pack.zip fabienthiesset@ssh-fabienthiesset.alwaysdata.net:portfolio/",
+    "deploy": "./scripts/deploy-prepare.sh && scp deploy_pack.zip fabienthiesset@ssh-fabienthiesset.alwaysdata.net: && ssh fabienthiesset@ssh-fabienthiesset.alwaysdata.net \"rm -rf portfolio/* && unzip -o deploy_pack.zip -d portfolio/ && rm deploy_pack.zip && mkdir -p portfolio/tmp && touch portfolio/tmp/restart.txt\"",
     "build": "vite build",
     "preview": "vite preview",
     "clean": "rm -rf dist",

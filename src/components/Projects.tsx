@@ -65,7 +65,7 @@ export default function Projects({ data }: { data: any }) {
               >
               <article 
                 className={cn(
-                  "relative w-full h-full transition-all duration-700 preserve-3d cursor-pointer transform-gpu",
+                  "relative w-full h-full transition-all duration-700 preserve-3d cursor-pointer transform-gpu focus-visible:ring-4 focus-visible:ring-teal-400 focus-visible:ring-offset-4 focus-visible:ring-offset-[#131b2f] focus-visible:outline-none rounded-[32px]",
                   flippedIndex === i ? "rotate-y-180" : ""
                 )}
                 role="button"
@@ -144,43 +144,47 @@ export default function Projects({ data }: { data: any }) {
                 <div className="absolute inset-0 backface-hidden rotate-y-180 bg-[#131b2f] rounded-[32px] overflow-hidden shadow-2xl flex flex-col p-7 md:p-8">
                   {/* Dedicated crisp border */}
                   <div className="absolute inset-0 rounded-[32px] border border-teal-500/30 pointer-events-none z-50" />
-                  <div className="flex items-center justify-between mb-4 md:mb-6">
+                  <div className="flex items-center justify-between mb-4 md:mb-6 shrink-0">
                     <h3 className="text-xl font-bold text-teal-400">{p.title}</h3>
                     <RotateCcw className="w-4 h-4 text-teal-400/50" />
                   </div>
 
                   {p.bmad ? (
-                    <div className="space-y-3 md:space-y-4 flex-grow overflow-y-auto custom-scrollbar pr-2">
-                      {[
-                        { icon: <Lightbulb className="w-4 h-4 text-amber-400" />, color: "bg-amber-400/10", border: "border-amber-400/20", text: p.bmad.need },
-                        { icon: <BrainCircuit className="w-4 h-4 text-indigo-400" />, color: "bg-indigo-400/10", border: "border-indigo-400/20", text: p.bmad.method },
-                        { icon: <Rocket className="w-4 h-4 text-teal-400" />, color: "bg-teal-400/10", border: "border-teal-400/20", text: p.bmad.action },
-                        { icon: <BarChart3 className="w-4 h-4 text-pink-400" />, color: "bg-pink-400/10", border: "border-pink-400/20", text: p.bmad.data },
-                      ].map((item, idx) => (
-                        <div key={idx} className="flex gap-3 md:gap-4 items-start">
-                          <div className={cn("w-8 h-8 rounded-lg flex items-center justify-center shrink-0 border", item.color, item.border)}>
-                            {item.icon}
+                    <>
+                      {/* Scrollable BMAD content */}
+                      <div className="space-y-3 md:space-y-4 flex-grow overflow-y-auto custom-scrollbar pr-2 mb-4">
+                        {[
+                          { icon: <Lightbulb className="w-4 h-4 text-amber-400" />, color: "bg-amber-400/10", border: "border-amber-400/20", text: p.bmad.need },
+                          { icon: <BrainCircuit className="w-4 h-4 text-indigo-400" />, color: "bg-indigo-400/10", border: "border-indigo-400/20", text: p.bmad.method },
+                          { icon: <Rocket className="w-4 h-4 text-teal-400" />, color: "bg-teal-400/10", border: "border-teal-400/20", text: p.bmad.action },
+                          { icon: <BarChart3 className="w-4 h-4 text-pink-400" />, color: "bg-pink-400/10", border: "border-pink-400/20", text: p.bmad.data },
+                        ].map((item, idx) => (
+                          <div key={idx} className="flex gap-3 md:gap-4 items-start">
+                            <div className={cn("w-8 h-8 rounded-lg flex items-center justify-center shrink-0 border", item.color, item.border)}>
+                              {item.icon}
+                            </div>
+                            <p className="text-[10px] md:text-[11px] text-slate-200 leading-relaxed font-medium">
+                              {item.text}
+                            </p>
                           </div>
-                          <p className="text-[10px] md:text-[11px] text-slate-200 leading-relaxed font-medium">
-                            {item.text}
-                          </p>
-                        </div>
-                      ))}
+                        ))}
+                      </div>
 
-                      <div className="pt-4 md:pt-6 border-t border-white/10 mt-auto">
+                      {/* Pinned Links & Tech Tags */}
+                      <div className="pt-4 border-t border-white/10 shrink-0">
                         {p.links && (
-                          <div className="flex flex-wrap gap-3 mb-4">
+                          <div className="flex flex-wrap gap-3 mb-3">
                             {p.links.map((link: any) => (
                               <a 
                                 key={link.name} 
                                 href={link.url} 
                                 target="_blank" 
                                 rel="noopener noreferrer"
-                                className="text-[10px] font-bold text-teal-400 hover:text-white transition-colors flex items-center gap-1.5 underline decoration-teal-400/30 underline-offset-4 min-h-[32px] px-1"
+                                className="text-[10px] font-bold text-teal-400 hover:text-white transition-colors flex items-center gap-1.5 underline decoration-teal-400/30 underline-offset-4 min-h-[28px] px-1"
                                 aria-label={`${link.name} du projet ${p.title} (nouvel onglet)`}
                                 onClick={(e) => e.stopPropagation()}
                               >
-                                {link.name === 'Frontend' || link.name === 'Backend' ? <Github className="w-3 h-3" /> : <Globe className="w-3 h-3" />}
+                                {link.url.includes('github.com') ? <Github className="w-3 h-3" /> : <Globe className="w-3 h-3" />}
                                 {link.name}
                               </a>
                             ))}
@@ -192,15 +196,14 @@ export default function Projects({ data }: { data: any }) {
                           ))}
                         </div>
                       </div>
-                    </div>
-
+                    </>
                   ) : (
                     <div className="flex-grow flex items-center justify-center text-slate-400 text-sm italic">
                       Détails confidentiels ou en cours de rédaction.
                     </div>
                   )}
 
-                  <div className="mt-4 md:mt-6">
+                  <div className="mt-4 md:mt-6 shrink-0">
                     <a 
                       href="#contact" 
                       className="w-full py-3 bg-teal-400 text-[#0a0f1d] rounded-xl font-black text-[10px] uppercase tracking-widest flex items-center justify-center gap-2 hover:bg-teal-300 transition-all shadow-lg shadow-teal-900/40 active:scale-95"

@@ -95,7 +95,7 @@ export default function Navbar() {
           </a>
 
           {/* Desktop Nav */}
-          <div className="hidden sm:flex items-center space-x-6 xl:space-x-10">
+          <div className="hidden lg:flex items-center space-x-6 xl:space-x-10">
             {navLinks.map((item) => (
               <a
                 key={item.name}
@@ -118,7 +118,7 @@ export default function Navbar() {
 
           {/* Desktop CTA */}
           <div className={cn(
-            "hidden sm:block transition-all duration-500",
+            "hidden lg:block transition-all duration-500",
             showContactBtn ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10 pointer-events-none"
           )}>
             <a
@@ -130,8 +130,8 @@ export default function Navbar() {
             </a>
           </div>
 
-          {/* Mobile/Tablet: CTA + Burger side-by-side — HIDDEN ON DESKTOP (>640px) */}
-          <div className="sm:hidden flex items-center gap-2 burger-desktop-hide">
+          {/* Mobile/Tablet: CTA + Burger side-by-side — HIDDEN ON DESKTOP (>1024px) */}
+          <div className="lg:hidden flex items-center gap-2 burger-desktop-hide">
             {/* Mobile CTA — visible when scrolled past hero */}
             <a
               href="#contact"
@@ -165,7 +165,7 @@ export default function Navbar() {
         aria-modal="true"
         aria-label="Menu de navigation"
         className={cn(
-          "sm:hidden fixed inset-0 z-[65] transition-all duration-500 ease-in-out",
+          "lg:hidden fixed inset-0 z-[65] transition-all duration-500 ease-in-out",
           isMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         )}
       >
