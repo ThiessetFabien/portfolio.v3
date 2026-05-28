@@ -12,6 +12,7 @@ interface FooterProps {
 }
 
 export default function Footer({ contact }: FooterProps) {
+  const email = contact?.email || "thiessetfabienpro@gmail.com";
   const linkedin = contact?.linkedin || "https://www.linkedin.com/in/fabien-thiesset";
   const github = contact?.github || "https://github.com/ThiessetFabien";
   const whatsapp = contact?.whatsapp || "https://wa.me/33610920974";

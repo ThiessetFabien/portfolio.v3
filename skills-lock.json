@@ -1,0 +1,119 @@
+{
+  "version": 1,
+  "skills": {
+    "Accessibility Auditor": {
+      "source": "davila7/claude-code-templates",
+      "sourceType": "github",
+      "skillPath": "cli-tool/components/skills/creative-design/accessibility-auditor/SKILL.md",
+      "computedHash": "b370e7e92591cb36d542913865afd5e97a1e38866a10711a9d42a6b320964936"
+    },
+    "caveman": {
+      "source": "mattpocock/skills",
+      "sourceType": "github",
+      "skillPath": "skills/productivity/caveman/SKILL.md",
+      "computedHash": "934433479903febc585bf6deb5f0cebc63137e3f86b7babe0aab1ecb94d6d7a4"
+    },
+    "clean-code": {
+      "source": "sickn33/antigravity-awesome-skills",
+      "sourceType": "github",
+      "skillPath": "skills/clean-code/SKILL.md",
+      "computedHash": "74bf6ded4f61ddcb593e7a29beb96c284f888cbe0639ad6e23710447c36ff19a"
+    },
+    "copywriting": {
+      "source": "coreyhaines31/marketingskills",
+      "sourceType": "github",
+      "skillPath": "skills/copywriting/SKILL.md",
+      "computedHash": "d3191c3ad90610e0cacecf638d927418852264fabbd6e81c045094dad7d96f11"
+    },
+    "dependency-auditor": {
+      "source": "useai-pro/openclaw-skills-security",
+      "sourceType": "github",
+      "skillPath": "skills/dependency-auditor/SKILL.md",
+      "computedHash": "b56f46a1bfc26a3b3b9764ef7528ec8b57a91f39c91b1e39eee3f8648cf9ff7a"
+    },
+    "gemini-watermark-remover": {
+      "source": "gargantuax/gemini-watermark-remover",
+      "sourceType": "github",
+      "skillPath": "skills/gemini-watermark-remover/SKILL.md",
+      "computedHash": "eadf2024808ca2f098b91e2856f789e9e2b9f58fc9cbb3a1c30bd5c9cd36db9e"
+    },
+    "improve-codebase-architecture": {
+      "source": "mattpocock/skills",
+      "sourceType": "github",
+      "skillPath": "skills/engineering/improve-codebase-architecture/SKILL.md",
+      "computedHash": "c77b86b4332919499608f9af1880074e1fec65a59b95c70c27a9f39cd137865e"
+    },
+    "interactive-portfolio": {
+      "source": "sickn33/antigravity-awesome-skills",
+      "sourceType": "github",
+      "skillPath": "skills/interactive-portfolio/SKILL.md",
+      "computedHash": "918d7e69a49cf8162c26c822ee3449cb2630173ac6f48a384da0b108961d03d9"
+    },
+    "nodejs-best-practices": {
+      "source": "sickn33/antigravity-awesome-skills",
+      "sourceType": "github",
+      "skillPath": "skills/nodejs-best-practices/SKILL.md",
+      "computedHash": "3e025f24a1948fcbfe666eabc757f5b426271b08a420a86dba1ea7518cc7b369"
+    },
+    "product-design": {
+      "source": "sickn33/antigravity-awesome-skills",
+      "sourceType": "github",
+      "skillPath": "skills/product-design/SKILL.md",
+      "computedHash": "002ff3c877bcc5198246d1cc252eb6e67b3d0f20bba9e26e10ffbd419a8b28b1"
+    },
+    "prompt-guard": {
+      "source": "useai-pro/openclaw-skills-security",
+      "sourceType": "github",
+      "skillPath": "skills/prompt-guard/SKILL.md",
+      "computedHash": "4aebbaac8de3744e64e5e3785ff19831f8e9ad063335caf00d5b411f592dc998"
+    },
+    "security-auditor": {
+      "source": "sickn33/antigravity-awesome-skills",
+      "sourceType": "github",
+      "skillPath": "skills/security-auditor/SKILL.md",
+      "computedHash": "771d0b237eb7557818e4350488f266faf35c883b643c9ab375d14e19141882f8"
+    },
+    "seo-aeo-best-practices": {
+      "source": "sanity-io/agent-toolkit",
+      "sourceType": "github",
+      "skillPath": "skills/seo-aeo-best-practices/SKILL.md",
+      "computedHash": "edb99db85683ff99678fcb1bebc3a5653c3ea927eea9ee2534f19be86c7b8b81"
+    },
+    "skill-auditor": {
+      "source": "useai-pro/openclaw-skills-security",
+      "sourceType": "github",
+      "skillPath": "skills/skill-auditor/SKILL.md",
+      "computedHash": "c218362cfc1e9a09377f55cd5a036fe476e1fb7010a6bc207ffefccf16b1f420"
+    },
+    "skill-creator": {
+      "source": "anthropics/skills",
+      "sourceType": "github",
+      "skillPath": "skills/skill-creator/SKILL.md",
+      "computedHash": "5ea13a6d9f0d4bb694405d79acd00cadec0d21bb138c4dd10fcf3c500cb835c2"
+    },
+    "software-architecture": {
+      "source": "sickn33/antigravity-awesome-skills",
+      "sourceType": "github",
+      "skillPath": "skills/software-architecture/SKILL.md",
+      "computedHash": "19ee028010077ff687e3fcf9613b4f9b9d6c839a15396007d9ba263f6930ec6a"
+    },
+    "ui-ux-pro-max": {
+      "source": "nextlevelbuilder/ui-ux-pro-max-skill",
+      "sourceType": "github",
+      "skillPath": ".claude/skills/ui-ux-pro-max/SKILL.md",
+      "computedHash": "0a413bf988d06481f69bb81df2070741c3ba12dd9f1be2706d57f259c905992d"
+    },
+    "uxui-principles": {
+      "source": "sickn33/antigravity-awesome-skills",
+      "sourceType": "github",
+      "skillPath": "skills/uxui-principles/SKILL.md",
+      "computedHash": "bff6634ee66bdd1e20bf9e4c181ac84ecd163e25287112dc7aea56d83ed1d3df"
+    },
+    "vercel-react-best-practices": {
+      "source": "vercel-labs/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/react-best-practices/SKILL.md",
+      "computedHash": "ca7b0c0c6e5f2750043f7f0cd72d16ac4e2abc48f9b5500d047a4b77a2506212"
+    }
+  }
+}
